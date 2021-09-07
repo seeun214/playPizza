@@ -1,13 +1,13 @@
-﻿-- 재능 기부자
+-- 메뉴 정보
 DROP TABLE menu cascade constraint;
 
--- 재능 수혜자
+-- 고객 정보
 DROP TABLE customers cascade constraint;
 
--- 재능기부 정보
+-- 지점 정보
 DROP TABLE branches cascade constraint;
 
--- 재능기부 프로젝트
+-- 주문 정보
 DROP TABLE orders cascade constraint;
 
 DROP SEQUENCE CUSTOMER_SEQ;

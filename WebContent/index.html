@@ -11,8 +11,27 @@
 	
 
 <br><hr><br>
+
 <audio src="sound/oohyo-pizza.mp3" controls="controls" />
+
+
+&nbsp;&nbsp;&nbsp;<a href="pizza?command=branchesAll">1. 모든 지점 검색</a><p>
+<form action="pizza?command=branch" method="post" >
+	&nbsp;&nbsp;&nbsp;
+	2. 지점명 : <input type="text" name="name"><input type="submit" value="검색">
+	</form>
+
+
+
+<br><br><br>
+<a href="pizza?command=allMenu">모든 Menu 검색</a><p>
+
+<br>
+<form action="pizza?command=oneMenu" method="post" >
 	
-</audio>
+	메뉴 이름 : <input type="text" name="name"><input type="submit" value="검색">
+</form>
+
+
 </body>
 </html>
