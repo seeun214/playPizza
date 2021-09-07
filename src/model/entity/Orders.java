@@ -1,5 +1,7 @@
 package model.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +37,7 @@ public class Orders {
 	
 	@ManyToOne(targetEntity = Menu.class)
 	@JoinColumn(name="menu_Id")
-	private Menu menuId;
+	private List<Menu> menuId;
 	
 	@ManyToOne(targetEntity = Branches.class)
 	@JoinColumn(name="branch_Id")
