@@ -29,10 +29,10 @@
 	
 	
 	<br><br><br>
-	<a href="pizza?command=allMenu">모든 Menu 검색</a><p>
+	<a href="pizza?command=menuAll">모든 Menu 검색</a><p>
 	
 	<br>
-	<form action="pizza?command=oneMenu" method="post" >
+	<form action="pizza?command=menu" method="post" >
 		
 		메뉴 이름 : <input type="text" name="name"><input type="submit" value="검색">
 	</form>
