@@ -21,10 +21,35 @@ public class CustomersDAO {
 		em.getTransaction().begin();
 		CustomersDTO customer = null;
 		
-		Customers c = em.createNamedQuery("Customer.findBySId", Customers.class).setParameter("sId", sId).getSingleResult();
-		customer = new CustomersDTO(c.getCustomerId(), c.getSId(), c.getAddress(), c.getPhone());
-		
+		try {
+			Customers c = em.createNamedQuery("Customer.findBySId", Customers.class).setParameter("sId", sId).getSingleResult();
+			customer = new CustomersDTO(c.getCustomerId(), c.getSId(), c.getAddress(), c.getPhone());
+		} catch(Exception e) {
+			em.getTransaction().rollback();
+		} finally {
+			em.close();
+			em = null;
+		}
 		System.out.println(customer.getSId());
 		return customer;
+	}
+
+	public boolean addCustomer(CustomersDTO customer) {
+		EntityManager em = DBUtil.getEntityManager();
+		em.getTransaction().begin();
+		boolean result = false;
+
+		try {
+			em.persist(customer.toEntity());
+			em.getTransaction().commit();
+
+			result = true;
+
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+		} finally {
+			em.close();
+		}
+		return result;
 	}
 }
