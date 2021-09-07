@@ -24,7 +24,7 @@ ${requestScope.successMsg}
 	</tr>
  	<tr>
  		<td>${requestScope.orders.orderId}</td>
- 		<td>${requestScope.orders.customerId.phone}</td>
+ 		<td>${requestScope.orders.customerId}</td>
  	</tr>
 </table>
 
