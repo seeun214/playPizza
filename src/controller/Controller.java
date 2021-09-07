@@ -39,10 +39,12 @@ public class Controller extends HttpServlet {
 				orders(request, response);
 			} else if (command.equals("customerInsert")) {
 				customerInsert(request, response);
-			}else if(command.equals("customerUpdateReq")){//재능 기부자 정보 수정요청
+			}else if(command.equals("customerUpdateReq")){
 				customerUpdateReq(request, response);
-			}else if(command.equals("customerUpdate")){//재능 기부자 정보 수정
+			}else if(command.equals("customerUpdate")){
 				customerUpdate(request, response);
+			}else if(command.equals("customerDelete")){
+				customerDelete(request, response);
 			}
 		} catch (Exception s) {
 			request.setAttribute("errorMsg", s.getMessage());
@@ -102,8 +104,8 @@ public class Controller extends HttpServlet {
 	public void customerUpdateReq(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
-			request.setAttribute("customer", service.getCustomer(request.getParameter("customerId")));
-			url = "custormer/customerUpdate.jsp";
+			request.setAttribute("customer", service.getCustomer(request.getParameter("sId")));
+			url = "customer/customerUpdate.jsp";
 		}catch(Exception s){
 			request.setAttribute("errorMsg", s.getMessage());
 			s.printStackTrace();
@@ -111,14 +113,12 @@ public class Controller extends HttpServlet {
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
-	//???
-	//재능 기부자 수정 - 상세정보 확인 jsp[activistDetail.jsp]
 	public void customerUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
-			boolean result = service.updateCustomer(request.getParameter("activistId"), request.getParameter("major"));
+			boolean result = service.updateCustomer(request.getParameter("sId"), request.getParameter("address"), request.getParameter("phone"));
 			if(result) {
-				request.setAttribute("activist", service.getCustomer(request.getParameter("customerId")));
+				request.setAttribute("customer", service.getCustomer(request.getParameter("sId")));
 				url = "customer/customerDetail.jsp";
 			}else {
 				request.setAttribute("errorMsg", "수정 실패");
@@ -129,6 +129,23 @@ public class Controller extends HttpServlet {
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	
+	}
+	
+	public void customerDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "showError.jsp";
+		try {
+			boolean result = service.deleteCustomer(request.getParameter("sId"));
+			if(result) {
+//				url = "/index.jsp";
+				url = "customer/logout.jsp";
+			}else {
+				request.setAttribute("errorMsg", "삭제 실패");
+			}
+		}catch(Exception s){
+			request.setAttribute("errorMsg", s.getMessage());
+			s.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 	// 특정 지점 검색
