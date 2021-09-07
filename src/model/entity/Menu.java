@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,11 +21,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
+
 @Entity
 @SequenceGenerator(name = "MENU_SEQ_GENERATOR",
 			sequenceName = "MENU_SEQ", 
 			initialValue = 1,
 			allocationSize = 1)
+@NamedQuery(query = "select m from Menu m order by m.menuId", name = "Menu.findAllMenu")
+@NamedQuery(query = "select m from Menu m where m.name=:name order by m.name", name = "Menu.findByMenuName")
 public class Menu {
 	@Id
 	@Column(name="menu_id")
@@ -37,7 +43,13 @@ public class Menu {
 
 	@Override
 	public String toString() {
-		return "Menu [menuId=" + menuId + ", name=" + name + ", price=" + price + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append(super.toString());
+		builder.append("메뉴 : ");
+		builder.append(name);
+		builder.append("가격 : ");
+		builder.append(price);
+		return builder.toString();
 	}
 		
 }
