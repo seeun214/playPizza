@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,12 +7,14 @@
 <title>Welcome playPizza</title>
 </head>
 <body>
+
 	<form action="pizza?command=customer" method="post">
 		고객 ID : <input type="text" name="sId"><input type="submit" value="검색">
 	</form>
 	
-	<a href="customer/signIn.html">회원가입</a>
+	<a href="customer/signIn.html">회원가입</a> <br>
 	
+	<a href="customer/logIn.html">로그인</a> <br>
 
 	<br><hr><br>
 	
@@ -32,7 +36,5 @@
 		
 		메뉴 이름 : <input type="text" name="name"><input type="submit" value="검색">
 	</form>
-
-
 </body>
 </html>
