@@ -61,6 +61,7 @@ public class Service {
 		return branchesAll;
 	}
 
+	// Menu
 	public static void notExistMenu(String name) throws NotExistException, SQLException {
 		MenuDTO menu = menuDAO.getOneMenu(name);
 		if (menu == null) {
