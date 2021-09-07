@@ -6,23 +6,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Menu</title>
+<title>Orders</title>
 </head>
 <body>
-<h1>전체 메뉴</h1>
+<h1>전체 주문 정보</h1>
 
 <font color="black">메뉴 이름을 클릭하여 가격을 확인하세요.</font>
 
 <table border="1">
 	<thead>
 		<tr>
-			<th>메뉴</th>
+			<th>주문 번호</th><th>고객 이름</th><th>메뉴</th><th>지점명</th>
 		</tr>
 	</thead>
 	
-	<c:forEach items="${requestScope.menuAll}" var="data">
+	<c:forEach items="${requestScope.ordersAll}" var="data">
 		 <tr>
-		 	<td><a href="${url}pizza?command=menu&name=${data.name}">${data.name}</a></td>
+		 	<td>${data.orderId}</td>
+		 	<td>${data.customerId.name}</td>
+		 	<td>${data.menuId}</td>
+		 	<td>${data.branchId.name}</td>
 		 </tr>
 	 </c:forEach>
 

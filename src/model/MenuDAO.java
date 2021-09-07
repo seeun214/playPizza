@@ -44,7 +44,7 @@ public class MenuDAO {
 		List<Menu> list = null;
 		ArrayList<MenuDTO> arr = new ArrayList<MenuDTO>();
 		try {
-			list = em.createNativeQuery("SELECT * FROM Menu").getResultList();
+			list = em.createNativeQuery("SELECT * FROM Menu", Menu.class).getResultList();
 			for(Menu m : list) {
 				arr.add(new MenuDTO(m.getMenuId(), m.getName(), m.getPrice()));
 			}
