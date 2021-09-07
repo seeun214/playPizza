@@ -25,6 +25,7 @@ public class Service {
   //고객 ID로 검색
 	public CustomersDTO getCustomer(String sId) {
 		return customerDAO.getCustomer(sId);
+	}
 	
 	//특정 지점 검색
 	public static BranchesDTO getBranch(String name) throws SQLException, NotExistException{
@@ -42,6 +43,7 @@ public class Service {
 			throw new NotExistException("검색하신 지점이  미 존재합니다.");
 		}
 		return branchesAll;
+	}
 
 	//Menu
 	public static void notExistMenu(String name) throws NotExistException, SQLException {

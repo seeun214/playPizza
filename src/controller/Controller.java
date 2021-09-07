@@ -54,6 +54,7 @@ public class Controller extends HttpServlet {
 			url = "customer/customerDetail.jsp";
 		} else {
 			request.setAttribute("errorMsg", "존재하지 않는 고객 정보입니다.");
+		}
 	}
 
 	//특정 지점 검색
