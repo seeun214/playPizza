@@ -6,9 +6,12 @@
 <meta charset="UTF-8">
 <title>Customer Detail</title>
 </head>
+<header>
+	<jsp:include page="../common/loginHeader.jsp"></jsp:include>
+</header>
+
 <body>
 --------------------- <br>
-시퀀스 : ${requestScope.customer.customerId} <br>
 ID : ${requestScope.customer.SId} <br>
 주소 : ${requestScope.customer.address} <br>
 전화번호 : ${requestScope.customer.phone} <br>
