@@ -42,7 +42,7 @@
 	<br>
 	<form action="pizza?command=orders" method="post" >
 		
-		주문 번호 : <input type="text" name="name"><input type="submit" value="검색">
+		주문 번호 : <input type="text" name="orderId"><input type="submit" value="검색">
 	</form>
 </body>
 </html>

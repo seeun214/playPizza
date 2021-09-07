@@ -162,10 +162,9 @@ public class Controller extends HttpServlet {
 	public void orders(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
-			System.out.println(1);
 
 			OrdersDTO orders = service.getOneOrder(Integer.parseInt(request.getParameter("orderId")));
-
+			
 			if (orders != null) {
 				request.setAttribute("orders", orders);
 				url = "orders/ordersDetail.jsp";
@@ -178,5 +177,4 @@ public class Controller extends HttpServlet {
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-
 }

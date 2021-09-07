@@ -91,22 +91,10 @@ public class Service {
 	
 	//주문 번호로 주문 정보 검색 반환
 		public OrdersDTO getOneOrder(int orderId) throws SQLException, NotExistException {
-			System.out.println(2);
 			OrdersDTO order = ordersDAO.getOneOrder(orderId);
-			
 			if(order == null){
 				throw new NotExistException();
 			}
 			return order;
 		}
-
-//	//모든 주문 검색 반환
-//	public ArrayList<OrdersDTO> getAllOrder() throws SQLException, NotExistException {
-//		ArrayList<OrdersDTO> ordersList = ordersDAO.getAllOrder();
-//		if(ordersList == null || ordersList.size() == 0){
-//			throw new NotExistException();
-//		}
-//		return ordersList;
-//
-//	}
 }

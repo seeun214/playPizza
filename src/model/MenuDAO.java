@@ -14,12 +14,13 @@ public class MenuDAO {
 
 	private static MenuDAO instance = new MenuDAO();
 
-	private MenuDAO() {}
+	private MenuDAO() {
+	}
 
 	public static MenuDAO getInstance() {
 		return instance;
 	}
-	
+
 	public MenuDTO getOneMenu(String name) throws SQLException {
 		EntityManager em = DBUtil.getEntityManager();
 		em.getTransaction().begin();
@@ -37,7 +38,7 @@ public class MenuDAO {
 		}
 		return menu;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<MenuDTO> getAllMenu() throws SQLException {
 		EntityManager em = DBUtil.getEntityManager();
@@ -45,7 +46,7 @@ public class MenuDAO {
 		ArrayList<MenuDTO> arr = new ArrayList<MenuDTO>();
 		try {
 			list = em.createNativeQuery("SELECT * FROM Menu", Menu.class).getResultList();
-			for(Menu m : list) {
+			for (Menu m : list) {
 				arr.add(new MenuDTO(m.getMenuId(), m.getName(), m.getPrice()));
 			}
 		} catch (Exception e) {
