@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -24,6 +25,8 @@ import lombok.Setter;
 				sequenceName = "BRANCHES_SEQ", 
 				initialValue = 1,
 				allocationSize = 1)
+@NamedQuery(name="Branch.findByName",
+			query="select b from Branches b where b.name = :name")
 public class Branches {
 	@Id
 	@Column(name="branch_id")
