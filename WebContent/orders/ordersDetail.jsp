@@ -8,10 +8,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Menu</title>
+<title>Orders</title>
 </head>
 <body>
-<h1>메뉴 상세페이지</h1>
+<h1>주문 정보 상세페이지</h1>
 
 
 ${requestScope.successMsg}
@@ -20,11 +20,11 @@ ${requestScope.successMsg}
 
 <table border="1">
 	<tr>
-		<th>메뉴</th><th>가격</th>
+		<th>주문 번호</th><th>고객 아이디</th>
 	</tr>
  	<tr>
- 		<td>${requestScope.menu.name}</td>
- 		<td>${requestScope.menu.price}</td>
+ 		<td>${requestScope.orders.orderId}</td>
+ 		<td>${requestScope.orders.customerId.phone}</td>
  	</tr>
 </table>
 
