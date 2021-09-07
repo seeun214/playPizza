@@ -32,7 +32,7 @@ public class Service {
 	
 	//특정 지점 검색
 	// 회원가입
-	public static void notExistActivist(String customerId) throws NotExistException, SQLException{
+	public static void notExistCustomer(String customerId) throws NotExistException, SQLException{
 		CustomersDTO customer = customerDAO.getCustomer(customerId);
 		if(customer == null){
 			throw new NotExistException("검색하는 회원이 미존재합니다.");

@@ -39,6 +39,10 @@ public class Controller extends HttpServlet {
 				orders(request, response);
 			} else if (command.equals("customerInsert")) {
 				customerInsert(request, response);
+			}else if(command.equals("customerUpdateReq")){//재능 기부자 정보 수정요청
+				customerUpdateReq(request, response);
+			}else if(command.equals("customerUpdate")){//재능 기부자 정보 수정
+				customerUpdate(request, response);
 			}
 		} catch (Exception s) {
 			request.setAttribute("errorMsg", s.getMessage());
@@ -93,6 +97,38 @@ public class Controller extends HttpServlet {
 			s.printStackTrace();
 		}
 		request.getRequestDispatcher(url).forward(request, response);
+	}
+	
+	public void customerUpdateReq(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "showError.jsp";
+		try {
+			request.setAttribute("customer", service.getCustomer(request.getParameter("customerId")));
+			url = "custormer/customerUpdate.jsp";
+		}catch(Exception s){
+			request.setAttribute("errorMsg", s.getMessage());
+			s.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
+	}
+
+	//???
+	//재능 기부자 수정 - 상세정보 확인 jsp[activistDetail.jsp]
+	public void customerUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "showError.jsp";
+		try {
+			boolean result = service.updateCustomer(request.getParameter("activistId"), request.getParameter("major"));
+			if(result) {
+				request.setAttribute("activist", service.getCustomer(request.getParameter("customerId")));
+				url = "customer/customerDetail.jsp";
+			}else {
+				request.setAttribute("errorMsg", "수정 실패");
+			}
+		}catch(Exception s){
+			request.setAttribute("errorMsg", s.getMessage());
+			s.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
+	
 	}
 
 	// 특정 지점 검색
