@@ -64,7 +64,7 @@ public class Controller extends HttpServlet {
 				if (result) {
 					request.setAttribute("customer", customer);
 					request.setAttribute("successMsg", "가입 완료");
-					url = "customer/customerDetail.jsp";
+					url = "/index.jsp";
 				} else {
 					request.setAttribute("errorMsg", "다시 시도하세요");
 				}

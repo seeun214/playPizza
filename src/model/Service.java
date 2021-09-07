@@ -27,7 +27,6 @@ public class Service {
 
 	// 고객 ID로 검색
 	public CustomersDTO getCustomer(String sId) {
-		System.out.println("service");
 		return customerDAO.getCustomer(sId);
 	}
 	
