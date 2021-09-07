@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,10 +22,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Builder
 @SequenceGenerator(name = "CUSTOMER_SEQ_GENERATOR",
 		sequenceName = "CUSTOMER_SEQ", 
 		initialValue = 1,
 		allocationSize = 1)
+@NamedQuery (name="Customer.findBySId",
+			query="select c from Customers c where c.sId = :sId")
 public class Customers {
 	@Id
 	@Column(name="customer_id")
