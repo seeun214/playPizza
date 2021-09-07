@@ -1,16 +1,12 @@
 package model;
 
+
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-
 import model.dto.BranchesDTO;
-
-
-
 import exception.NotExistException;
 import model.dto.MenuDTO;
-
+import model.dto.CustomersDTO;
 
 public class Service {
 	private static Service instance = new Service();
@@ -25,8 +21,11 @@ public class Service {
 	private static MenuDAO menuDAO = MenuDAO.getInstance();
 	private static BranchesDAO branchesDAO = BranchesDAO.getInstance();
 	private static OrdersDAO ordersDAO = OrdersDAO.getInstance();
+  
+  //고객 ID로 검색
+	public CustomersDTO getCustomer(String sId) {
+		return customerDAO.getCustomer(sId);
 	
-
 	//특정 지점 검색
 	public static BranchesDTO getBranch(String name) throws SQLException, NotExistException{
 		BranchesDTO branch = branchesDAO.getBranch(name);

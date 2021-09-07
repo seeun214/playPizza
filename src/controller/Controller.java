@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Service;
+import model.dto.CustomersDTO;
 
 import model.dto.BranchesDTO;
 
@@ -23,7 +24,6 @@ public class Controller extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String command = request.getParameter("command");
-
 	
 		try{
 			if(command.equals("branchesAll")){//모든 지점 검색
@@ -34,6 +34,8 @@ public class Controller extends HttpServlet {
 				allMenu(request, response);
 			}else if(command.equals("oneMenu")) {//Menu 이름으로 검색
 				oneMenu(request, response);
+			}else if(command.equals("customer")){
+				customer(request, response);
 			}
 		}catch(Exception s){
 			request.setAttribute("errorMsg", s.getMessage());
@@ -41,6 +43,17 @@ public class Controller extends HttpServlet {
 			s.printStackTrace();
 		}
 		
+	}
+
+  private void customer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = null;
+		CustomersDTO c = service.getCustomer(request.getParameter("sId"));
+		System.out.println(c);
+		if(c != null) {
+			request.setAttribute("customer", c);
+			url = "customer/customerDetail.jsp";
+		} else {
+			request.setAttribute("errorMsg", "존재하지 않는 고객 정보입니다.");
 	}
 
 	//특정 지점 검색

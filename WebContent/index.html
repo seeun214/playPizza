@@ -5,13 +5,15 @@
 <title>Welcome playPizza</title>
 </head>
 <body>
-	플레이 피자 사이트에 오신 여러분을 환영합니다
+	<form action="pizza?command=customer" method="post">
+		고객 ID : <input type="text" name="sId"><input type="submit" value="검색">
+	</form>
 	
 
 <br><hr><br>
 
 <audio src="sound/oohyo-pizza.mp3" controls="controls" />
-</audio>
+
 
 &nbsp;&nbsp;&nbsp;<a href="pizza?command=branchesAll">1. 모든 지점 검색</a><p>
 <form action="pizza?command=branch" method="post" >
