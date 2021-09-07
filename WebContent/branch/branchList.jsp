@@ -25,7 +25,7 @@
 	
 	<c:forEach items="${requestScope.branchesAll}" var="data">
 		 <tr>
-		 	<td><a href="${url}probono?command=branch&branchname=${data.branchId}">${data.branchId}</a></td>
+		 	<td>${data.branchId}</td>
 		 	<td>${data.name}</td>
 		 	<td>${data.address}</td>
 		 	<td>${data.phone}</td>
@@ -34,12 +34,8 @@
 
 
 
-
-
 </table>
 
-<br><br><br>
-&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/index.html">메인 화면 이동</a>
 
 </center>
 </body>
