@@ -35,10 +35,10 @@ public class OrdersDAO {
 			
 			Orders o = em.createNamedQuery("Order.findByOrderId", Orders.class).setParameter("orderId", orderId).getSingleResult();
 			
-			System.out.println(o);
-			
-			
 			orders = new OrdersDTO();
+			System.out.println(orders);
+			
+			
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			e.printStackTrace();
@@ -47,22 +47,4 @@ public class OrdersDAO {
 		}
 		return orders;
 	}
-	
-//	@SuppressWarnings("unchecked")
-//	public ArrayList<OrdersDTO> getAllOrder() throws SQLException {
-//		EntityManager em = DBUtil.getEntityManager();
-//		List<Orders> list = null;
-//		ArrayList<OrdersDTO> arr = new ArrayList<OrdersDTO>();
-//		try {
-//			list = em.createNativeQuery("SELECT * FROM Orders", Orders.class).getResultList();
-//			for(Orders o : list) {
-//				arr.add(new OrdersDTO(o.getOrderId(), o.getCustomerId(), o.getMenuId(), o.getBranchId()));
-//			}
-//		} catch (Exception e) {
-//			em.getTransaction().rollback();
-//		} finally {
-//			em.close();
-//		}
-//		return arr;
-//	}
 }
