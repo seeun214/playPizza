@@ -43,7 +43,8 @@ public class Service {
 			throw new NotExistException("검색하신 지점이  미 존재합니다.");
 		}
 		return branchesAll;
-
+	}
+	
 	//Menu
 	public static void notExistMenu(String name) throws NotExistException, SQLException {
 		MenuDTO menu = menuDAO.getOneMenu(name);
