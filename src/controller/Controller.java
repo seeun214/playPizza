@@ -29,54 +29,56 @@ public class Controller extends HttpServlet {
 				branchesAll(request, response);
 			} else if (command.equals("branch")) {// 특정 지점 검색
 				branch(request, response);
-			}else if(command.equals("menuAll")) {//모든 Menu 검색
+			} else if (command.equals("menuAll")) {// 모든 Menu 검색
 				menuAll(request, response);
-			}else if(command.equals("menu")) {//Menu 이름으로 검색
+			} else if (command.equals("menu")) {// Menu 이름으로 검색
 				menu(request, response);
-			}else if(command.equals("customer")){
+			} else if (command.equals("customer")) {
 				customer(request, response);
-			}else if(command.equals("orders")) {
+			} else if (command.equals("orders")) {
 				orders(request, response);
 			} else if (command.equals("customerInsert")) {
 				customerInsert(request, response);
 			}
 		} catch (Exception s) {
-		request.setAttribute("errorMsg", s.getMessage());
-		request.getRequestDispatcher("showError.jsp").forward(request, response);
-		s.printStackTrace();
-	}
+			request.setAttribute("errorMsg", s.getMessage());
+			request.getRequestDispatcher("showError.jsp").forward(request, response);
+			s.printStackTrace();
+		}
 
 	}
 
-	private void customerInsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void customerInsert(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String url = null;
-		
+
 		String sId = request.getParameter("sId");
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
-		
-		if(sId != null && sId.length() !=0 && address != null) {
-			
+
+		if (sId != null && sId.length() != 0 && address != null) {
+
 			CustomersDTO customer = new CustomersDTO(sId, address, phone);
-			try{
+			try {
 				boolean result = service.addCustomer(customer);
-				if(result){
+				if (result) {
 					request.setAttribute("customer", customer);
 					request.setAttribute("successMsg", "가입 완료");
 					url = "customer/customerDetail.jsp";
-				}else{
+				} else {
 					request.setAttribute("errorMsg", "다시 시도하세요");
 				}
-			}catch(Exception s){
+			} catch (Exception s) {
 				request.setAttribute("errorMsg", s.getMessage());
 			}
 			request.getRequestDispatcher(url).forward(request, response);
 		}
 	}
 
-	private void customer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void customer(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String url = null;
- 
+
 		try {
 			CustomersDTO c = service.getCustomer(request.getParameter("sId"));
 			System.out.println(c);
@@ -86,13 +88,12 @@ public class Controller extends HttpServlet {
 			} else {
 				request.setAttribute("errorMsg", "존재하지 않는 고객 정보입니다.");
 			}
-		} catch(Exception s) {
+		} catch (Exception s) {
 			request.setAttribute("errorMsg", s.getMessage());
 			s.printStackTrace();
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-  
 
 	// 특정 지점 검색
 	public void branch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -126,77 +127,12 @@ public class Controller extends HttpServlet {
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
-		//모든 Menu 검색
-		public void menuAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			String url = "showError.jsp";
-			try {
-				request.setAttribute("menuAll", service.getAllMenu());
-				url = "menu/menuList.jsp";
-			}catch(Exception e){
-				request.setAttribute("errorMsg", e.getMessage());
-				e.printStackTrace();
-			}
-			request.getRequestDispatcher(url).forward(request, response);
-		}
-	
-		//Menu 이름으로 검색
-		public void menu(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			String url = "showError.jsp";
-			try {
-				MenuDTO menu = service.getOneMenu(request.getParameter("name"));
-				if(menu != null) {
-					request.setAttribute("menu", menu);
-					url = "menu/menuDetail.jsp";
-				}else {
-					request.setAttribute("errorMsg", "존재하지 않는 메뉴.");
-				}
-			}catch(Exception e){
-				request.setAttribute("errorMsg", e.getMessage());
-				e.printStackTrace();
-			}
-			request.getRequestDispatcher(url).forward(request, response);
-    }
-		
-//		//모든 주문 검색
-//		public void ordersAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//			String url = "showError.jsp";
-//			try {
-//				request.setAttribute("ordersAll", service.getAllOrder());
-//				url = "orders/ordersList.jsp";
-//			}catch(Exception e){
-//				request.setAttribute("errorMsg", e.getMessage());
-//				e.printStackTrace();
-//			}
-//			request.getRequestDispatcher(url).forward(request, response);
-//		}
-		
-		//주문 번호로 주문 정보 검색
-		public void orders(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			String url = "showError.jsp";
-			try {
-				System.out.println(1);
-				
-				OrdersDTO orders = service.getOneOrder(Integer.parseInt(request.getParameter("orderId")));
-				
-				if(orders != null) {
-					request.setAttribute("orders", orders);
-					url = "orders/ordersDetail.jsp";
-				}else {
-					request.setAttribute("errorMsg", "존재하지 않는 주문 정보.");
-				}
-			}catch(Exception e){
-				request.setAttribute("errorMsg", e.getMessage());
-				e.printStackTrace();
-			}
-			request.getRequestDispatcher(url).forward(request, response);
-		}
-	
 	// 모든 Menu 검색
-	public void allMenu(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void menuAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
-			request.setAttribute("allMenu", service.getAllMenu());
-			url = "menuList.jsp";
+			request.setAttribute("menuAll", service.getAllMenu());
+			url = "menu/menuList.jsp";
 		} catch (Exception e) {
 			request.setAttribute("errorMsg", e.getMessage());
 			e.printStackTrace();
@@ -205,7 +141,7 @@ public class Controller extends HttpServlet {
 	}
 
 	// Menu 이름으로 검색
-	public void oneMenu(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void menu(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
 			MenuDTO menu = service.getOneMenu(request.getParameter("name"));
@@ -214,6 +150,27 @@ public class Controller extends HttpServlet {
 				url = "menu/menuDetail.jsp";
 			} else {
 				request.setAttribute("errorMsg", "존재하지 않는 메뉴.");
+			}
+		} catch (Exception e) {
+			request.setAttribute("errorMsg", e.getMessage());
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
+	}
+
+	// 주문 번호로 주문 정보 검색
+	public void orders(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "showError.jsp";
+		try {
+			System.out.println(1);
+
+			OrdersDTO orders = service.getOneOrder(Integer.parseInt(request.getParameter("orderId")));
+
+			if (orders != null) {
+				request.setAttribute("orders", orders);
+				url = "orders/ordersDetail.jsp";
+			} else {
+				request.setAttribute("errorMsg", "존재하지 않는 주문 정보.");
 			}
 		} catch (Exception e) {
 			request.setAttribute("errorMsg", e.getMessage());

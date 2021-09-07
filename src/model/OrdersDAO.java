@@ -35,7 +35,7 @@ public class OrdersDAO {
 			
 			Orders o = em.createNamedQuery("Order.findByOrderId", Orders.class).setParameter("orderId", orderId).getSingleResult();
 			
-			orders = new OrdersDTO();
+			orders = new OrdersDTO(o.getOrderId(), o.getCustomerId(), o.getMenuId(), o.getBranchId());
 			System.out.println(orders);
 			
 			
