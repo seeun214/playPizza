@@ -22,7 +22,6 @@ public class OrdersDAO {
 	public OrdersDTO getOneOrder(int orderId) throws SQLException {
 		EntityManager em = DBUtil.getEntityManager();
 		em.getTransaction().begin();
-		System.out.println("-----------");
 		OrdersDTO orders = new OrdersDTO();
 		Orders o = new Orders();
 		
@@ -31,7 +30,6 @@ public class OrdersDAO {
 			o = (Orders)em.createNamedQuery("Order.findByOrderId", Orders.class).setParameter("orderId", orderId).getSingleResult();
 			
 			orders = new OrdersDTO(o.getOrderId(), o.getCustomerId(), o.getMenuId(), o.getBranchId());
-			System.out.println("orders---------"+orders);
 			
 		} catch (Exception e) {
 			em.getTransaction().rollback();
