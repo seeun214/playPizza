@@ -29,8 +29,12 @@ import lombok.Setter;
 sequenceName = "ORDERS_SEQ", 
 initialValue = 1,
 allocationSize = 1)
-@NamedQuery(query = "select o from Orders o where o.orderId=:orderId order by o.orderId", name = "Order.findByOrderId")
 @NamedQuery(query = "select o from Orders o where o.customerId.customerId=:customerId", name = "Order.findByCustomerId")
+
+@NamedQuery(query = "select o from Orders o where o.orderId=:orderId order by o.orderId", name = "Order.findByOrderId")
+@NamedQuery(query = "select o from Orders o where o.customerId=:v order by o.customerId", name = "Order.findByCustomerId")
+@NamedQuery(query = "select o from Orders o where o.menuId=:v order by o.menuId", name = "Order.findByMenuId")
+@NamedQuery(query = "select o from Orders o where o.branchId=:v order by o.branchId", name = "Order.findByBranchId")
 public class Orders {
 	@Id
 	@Column(name="order_id")

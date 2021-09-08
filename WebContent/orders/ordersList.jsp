@@ -27,6 +27,14 @@
 	 </c:forEach>
 
 </table>
+<br>
 
+<form action="pizza?command=orderDelete" method="post" >
+	<label for = "orderId">주문 취소하기 : </label>
+	<select name="orderId" id="orderId">
+		
+	</select>
+	<input type="submit" value="Submit">
+</form>
 </body>
 </html>
