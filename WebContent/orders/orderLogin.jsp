@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1>&#xe161; Login</h1>
+<h1>Login</h1>
 	<form action="orderLoginOK.jsp" method="post">
 		<table>
 			<tr>

@@ -16,7 +16,7 @@
 	String menu = request.getParameter("menu");
 	String branch = request.getParameter("branch");
 	
-	if (id != null && id.equals(pwd)) {
+	if (id != null && id.equals(id)) {
 		session.setAttribute("id", id);
 	}
 	

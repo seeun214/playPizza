@@ -44,8 +44,8 @@ public class Controller extends HttpServlet {
 				menu(request, response);
 			} else if (command.equals("customer")) {
 				customer(request, response);
-			} else if (command.equals("ordersAll")) {
-				ordersAll(request, response);
+			} else if (command.equals("orders")) {
+				orders(request, response);
 			} else if (command.equals("customerInsert")) {
 				customerInsert(request, response);
 			} else if(command.equals("ordersInsert")){// 주문 정보 추가
@@ -225,10 +225,10 @@ public class Controller extends HttpServlet {
 
 
 	// 고객 번호로 주문 정보 검색
-	public void ordersAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void orders(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
-			List<OrdersDTO> orders = service.getAllOrder(Integer.parseInt(request.getParameter("customerId")));
+			OrdersDTO orders = service.getOneOrder(Integer.parseInt(request.getParameter("orderId")));
 			request.setAttribute("orders", orders);
 			url = "orders/ordersList.jsp";
 		} catch (Exception e) {
