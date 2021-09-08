@@ -29,9 +29,6 @@
 </table>
 <br>
 
-	<form action="pizza?command=orderDelete" method="post" >
-		주문번호 : <input type="text" name="orderId"><input type="submit" value="삭제">
-	</form>
 	
 </body>
 </html>

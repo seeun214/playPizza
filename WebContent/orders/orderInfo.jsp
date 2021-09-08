@@ -21,6 +21,8 @@
 	}
 	
 %>
+
+	<button onclick="location.href='pizza?command=orderDelete&orderId=${requestScope.orders.orderId}'">주문 취소!</button>
 	
 	
 

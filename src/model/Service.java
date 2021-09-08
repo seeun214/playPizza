@@ -2,6 +2,7 @@ package model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import exception.NotExistException;
 import model.dto.BranchesDTO;

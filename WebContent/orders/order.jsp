@@ -12,7 +12,8 @@
 	<h1>Order</h1>
 	<br><br>
 	
-	<form action="orderLogin.jsp">
+  <c:if test="${not empty sessionScope.id}">
+	<form action="orderInfo.jsp">
   <label for="pizza">메뉴를 선택하세요:</label>
   <input list="pizzaList" id="pizza" name="pizza" />
   <datalist id="pizzaList">
@@ -34,13 +35,14 @@
     <option value="이태원점"></option>
     <option value="상봉점"></option>
   </datalist>
+  <input type="submit" onclick="location.href='pizza?command=orderInsert&orderId=${requestScope.orders.orderId}'" value="주문 !">
   <br><br>
-  <input type="submit" value="주문 !">
-  <c:if test="${empty sessionScope.id}">
-  </c:if>
-  <c:if test="${not empty sessionScope.id}">
-  </c:if>
 </form>
+  </c:if>
+  
+  <c:if test="${empty sessionScope.id}">
+  
+  </c:if>
 
 	<br>
 	<hr>
