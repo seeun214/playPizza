@@ -4,13 +4,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.MessageException;
 import exception.NotExistException;
 import model.dto.BranchesDTO;
 import model.dto.CustomersDTO;
 import model.dto.MenuDTO;
 import model.dto.OrdersDTO;
-import model.entity.Orders;
-import probono.exception.MessageException;
 
 public class Service {
 	private static Service instance = new Service();
@@ -43,8 +42,8 @@ public class Service {
 	public boolean addCustomer(CustomersDTO customer) throws NotExistException, MessageException {
 		return customerDAO.addCustomer(customer);
 	}
-  
-  public boolean updateCustomer(String sId, String address, String phone) throws NotExistException, SQLException {
+
+	public boolean updateCustomer(String sId, String address, String phone) throws NotExistException, SQLException {
 		notExistCustomer(sId);
 		return customerDAO.updateCustomer(sId, address, phone);
 	}
@@ -53,7 +52,7 @@ public class Service {
 		notExistCustomer(sId);
 		boolean result = customerDAO.deleteCustomer(sId);
 		System.out.println(result);
-		if(!result){
+		if (!result) {
 			throw new NotExistException("고객 정보 삭제 실패");
 		}
 		return result;
@@ -63,7 +62,7 @@ public class Service {
 	public static BranchesDTO getBranch(String name) throws SQLException, NotExistException {
 		BranchesDTO branch = branchesDAO.getBranch(name);
 		if (branch == null) {
-			throw new NotExistException("검색하신 지점이  미 존재합니다.");
+			throw new NotExistException("검색하신 지점이 미존재합니다.");
 		}
 		return branch;
 	}
@@ -72,7 +71,7 @@ public class Service {
 	public ArrayList<BranchesDTO> getAllBranches() throws SQLException, NotExistException {
 		ArrayList<BranchesDTO> branchesAll = branchesDAO.getAllBranches();
 		if (branchesAll == null) {
-			throw new NotExistException("검색하신 지점이  미 존재합니다.");
+			throw new NotExistException("검색하신 지점이 미존재합니다.");
 		}
 		return branchesAll;
 	}
@@ -89,7 +88,7 @@ public class Service {
 	public MenuDTO getOneMenu(String name) throws SQLException, NotExistException {
 		MenuDTO menu = menuDAO.getOneMenu(name);
 		if (menu == null) {
-			throw new NotExistException();
+			throw new NotExistException("찾으시는 메뉴가 없습니다.");
 		}
 		return menu;
 	}
@@ -98,19 +97,33 @@ public class Service {
 	public ArrayList<MenuDTO> getAllMenu() throws SQLException, NotExistException {
 		ArrayList<MenuDTO> menuList = menuDAO.getAllMenu();
 		if (menuList == null || menuList.size() == 0) {
-			throw new NotExistException();
+			throw new NotExistException("메뉴가 없습니다.");
 		}
 		return menuList;
 
 	}
-		
-	//고객 번호로 주문 정보 검색 반환
+
+	// 주문 정보 추가 메소드 반환
+	public static boolean addOrders(OrdersDTO order) throws SQLException {
+		return ordersDAO.addOrders(order);
+	}
+
+	// 고객 번호로 주문 내역 검색
 	public List<OrdersDTO> getAllOrder(int customerId) throws SQLException, NotExistException {
 		List<OrdersDTO> orders = ordersDAO.getAllOrder(customerId);
-		if(orders == null){
-			throw new NotExistException();
+		if (orders == null || orders.size() == 0) {
+			throw new NotExistException("주문내역이 없습니다.");
 		}
 		return orders;
+	}
+	
+	public boolean deleteOrder(int orderId) throws NotExistException, SQLException {
+		boolean result = ordersDAO.deleteOrder(orderId);
+		System.out.println(result);
+		if (!result) {
+			throw new NotExistException("주문 삭제 실패");
+		}
+		return result;
 	}
 
 }

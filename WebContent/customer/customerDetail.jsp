@@ -22,6 +22,8 @@ ID : ${requestScope.customer.SId} <br>
 ---------------------<br><br>
 </header>
 
+<a href="pizza?command=ordersAll&customerId=${requestScope.customer.customerId}">주문내역</a>
+
 <a href="pizza?command=customerUpdateReq&sId=${requestScope.customer.SId}">수정하기</a>
 
 <a href="pizza?command=customerDelete&sId=${requestScope.customer.SId}">탈퇴하기</a>

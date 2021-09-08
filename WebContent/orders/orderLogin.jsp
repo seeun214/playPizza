@@ -1,11 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Log in</title>
+<meta charset="utf-8">
+<title>로그인</title>
 </head>
 <body>
-	<form action="loginOK.jsp" method="post">
+
+<h1>Login</h1>
+	<form action="orderLoginOK.jsp" method="post">
 		<table>
 			<tr>
 				<td>ID</td>
@@ -22,5 +26,12 @@
 			</tr>
 		</table>
 	</form>
+	
+	<br><hr>
+	
+	<h1>Join</h1>
+
+	
+
 </body>
 </html>

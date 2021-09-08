@@ -16,7 +16,7 @@
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
   <h1 class="w3-margin w3-jumbo">Play Pizza</h1>
   <p class="w3-xlarge">근데 이제 배달은 안되는</p>
-  <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">주문하기</button>
+  <button onclick="location.href='orders/order.jsp'" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">주문하기</button>
 </header>
 
 <!-- First Grid -->
@@ -40,19 +40,3 @@
 <jsp:include page="common/footer.jsp"></jsp:include>
 </body>
 </html>
-
-<!-- 	<form action="pizza?command=customer" method="post">
-		고객 ID : <input type="text" name="sId"><input type="submit" value="검색">
-	</form>
-		
-	<form action="pizza?command=branch" method="post" >
-		&nbsp;&nbsp;&nbsp;
-		2. 지점명 : <input type="text" name="name"><input type="submit" value="검색">
-	</form>
-	
-	<br>
-	<form action="pizza?command=menu" method="post" >
-		메뉴 이름 : <input type="text" name="name"><input type="submit" value="검색">
-	</form>
- -->
-	
