@@ -1,17 +1,10 @@
 package model;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import model.dto.BranchesDTO;
-import model.dto.CustomersDTO;
-import model.dto.MenuDTO;
 import model.dto.OrdersDTO;
-import model.entity.Customers;
-import model.entity.Menu;
 import model.entity.Orders;
 import model.util.DBUtil;
 

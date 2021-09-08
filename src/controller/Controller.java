@@ -45,10 +45,16 @@ public class Controller extends HttpServlet {
 				customerInsert(request, response);
 			} else if (command.equals("orders")) {
 				orders(request, response);
-//			} else if(command.equals("ordersInsert")){// 주문 정보 추가
-//				ordersInsert(request, response);
-		}
-		}catch (Exception s) {
+			} else if(command.equals("ordersInsert")){// 주문 정보 추가
+				ordersInsert(request, response);
+			}else if(command.equals("customerUpdateReq")){
+				customerUpdateReq(request, response);
+			}else if(command.equals("customerUpdate")){
+				customerUpdate(request, response);
+			}else if(command.equals("customerDelete")){
+				customerDelete(request, response);
+			}
+		} catch (Exception s) {
 			request.setAttribute("errorMsg", s.getMessage());
 			request.getRequestDispatcher("showError.jsp").forward(request, response);
 			s.printStackTrace();
@@ -97,6 +103,53 @@ public class Controller extends HttpServlet {
 				request.setAttribute("errorMsg", "존재하지 않는 고객 정보입니다.");
 			}
 		} catch (Exception s) {
+			request.setAttribute("errorMsg", s.getMessage());
+			s.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
+	}
+	
+	public void customerUpdateReq(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "showError.jsp";
+		try {
+			request.setAttribute("customer", service.getCustomer(request.getParameter("sId")));
+			url = "customer/customerUpdate.jsp";
+		}catch(Exception s){
+			request.setAttribute("errorMsg", s.getMessage());
+			s.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
+	}
+
+	public void customerUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "showError.jsp";
+		try {
+			boolean result = service.updateCustomer(request.getParameter("sId"), request.getParameter("address"), request.getParameter("phone"));
+			if(result) {
+				request.setAttribute("customer", service.getCustomer(request.getParameter("sId")));
+				url = "customer/customerDetail.jsp";
+			}else {
+				request.setAttribute("errorMsg", "수정 실패");
+			}
+		}catch(Exception s){
+			request.setAttribute("errorMsg", s.getMessage());
+			s.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
+	
+	}
+	
+	public void customerDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "showError.jsp";
+		try {
+			boolean result = service.deleteCustomer(request.getParameter("sId"));
+			if(result) {
+//				url = "/index.jsp";
+				url = "customer/logout.jsp";
+			}else {
+				request.setAttribute("errorMsg", "삭제 실패");
+			}
+		}catch(Exception s){
 			request.setAttribute("errorMsg", s.getMessage());
 			s.printStackTrace();
 		}
@@ -186,49 +239,48 @@ public class Controller extends HttpServlet {
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
-	// 주문 정보 추가
-//	protected void ordersInsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		EntityManager em = DBUtil.getEntityManager();
-//		EntityTransaction tx = em.getTransaction();
-//
-//		String url = "showError.jsp";
-//
-//		String id = request.getParameter("customerId");
-//		Menu mName = request.getParameter("menu");
-//		String bName = request.getParameter("branch");
-//
-//		int oCustomer = Integer.parseInt(id);
-//		int oMenu = Integer.parseInt(mName);
-//		int oBranch = Integer.parseInt(bName);
-//		
-//		Customers customer = em.find(Customers.class, oCustomer);
-//		Menu menu = em.find(Menu.class, oMenu);
-//		Branches branch = em.find(Branches.class, oBranch);
-//		OrdersDTO newOrder = null;
-//		
-//		// 해킹등으로 불합리하게 요청도 될수 있다는 가정하에 모든 데이터가 제대로 전송이 되었는지를 검증하는 로직
-//		if (id != null && id.length() != 0 && mName != null && bName != null) {
-//			
-//				try {
-//					tx.begin();
-//					newOrder.setCustomerId(customer);
-//					newOrder.setMenuId(menu);
-//					newOrder.setTotalPrice(coin.getCoinPrice() * order.getOrderQty());
-//			
-////				OrdersDTO orders = new OrdersDTO(id, mName, bName);
-//				boolean result = service.addOrders(orders);
-//				if (result) {
-//					request.setAttribute("orders", orders);
-//					request.setAttribute("successMsg", "추가 완료");
-//					url = "orders/ordersDetail.jsp";
-//				} else {
-//					tx.commit();
-//					request.setAttribute("errorMsg", "다시 시도하세요");
-//				}
-//			} catch (Exception s) {
-//				request.setAttribute("errorMsg", s.getMessage());
-//			}
-//			request.getRequestDispatcher(url).forward(request, response);
-//		}
-//	}
+	 //주문 정보 추가
+	protected void ordersInsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		EntityManager em = DBUtil.getEntityManager();
+		EntityTransaction tx = em.getTransaction();
+
+		String url = "showError.jsp";
+
+		String id = request.getParameter("customerId");
+		String mName = request.getParameter("menu");
+		String bName = request.getParameter("branch");
+
+		int oCustomer = Integer.parseInt(id);
+		int oMenu = Integer.parseInt(mName);
+		int oBranch = Integer.parseInt(bName);
+		
+		Customers customer = em.find(Customers.class, oCustomer);
+		Menu menu = em.find(Menu.class, oMenu);
+		Branches branch = em.find(Branches.class, oBranch);
+		OrdersDTO newOrder = null;
+		
+		// 해킹등으로 불합리하게 요청도 될수 있다는 가정하에 모든 데이터가 제대로 전송이 되었는지를 검증하는 로직
+		if (id != null && id.length() != 0 && mName != null && bName != null) {
+			
+				try {
+					tx.begin();
+					newOrder.setCustomerId(customer);
+					newOrder.setMenuId(menu);
+					newOrder.setBranchId(branch);
+			
+				boolean result = service.addOrders(newOrder);
+				if (result) {
+					request.setAttribute("orderInsert", newOrder);
+					request.setAttribute("successMsg", "추가 완료");
+					url = "orders/order.jsp";
+				} else {
+					tx.commit();
+					request.setAttribute("errorMsg", "다시 시도하세요");
+				}
+			} catch (Exception s) {
+				request.setAttribute("errorMsg", s.getMessage());
+			}
+			request.getRequestDispatcher(url).forward(request, response);
+		}
+	}
 }

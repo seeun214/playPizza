@@ -31,7 +31,7 @@ public class Service {
 	}
 
 	// 회원가입
-	public static void notExistActivist(String customerId) throws NotExistException, SQLException {
+	public static void notExistCustomer(String customerId) throws NotExistException, SQLException {
 		CustomersDTO customer = customerDAO.getCustomer(customerId);
 		if (customer == null) {
 			throw new NotExistException("검색하는 회원이 미존재합니다.");
@@ -107,5 +107,19 @@ public class Service {
 	// 주문 정보 추가 메소드 반환
 	public static boolean addOrders(OrdersDTO order) throws SQLException {
 		return ordersDAO.addOrders(order);
+	}
+	
+	public boolean updateCustomer(String sId, String address, String phone) throws NotExistException, SQLException {
+		notExistCustomer(sId);
+		return customerDAO.updateCustomer(sId, address, phone);
+	}
+
+	public boolean deleteCustomer(String sId) throws NotExistException, SQLException {
+		notExistCustomer(sId);
+		boolean result = customerDAO.deleteCustomer(sId);
+		if(!result){
+			throw new NotExistException("고객 정보 삭제 실패");
+		}
+		return result;
 	}
 }
