@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import model.dto.BranchesDTO;
 import model.dto.CustomersDTO;
 import model.dto.MenuDTO;
 import model.dto.OrdersDTO;
+import model.entity.Orders;
 
 @WebServlet("/pizza")
 public class Controller extends HttpServlet {
@@ -35,8 +37,8 @@ public class Controller extends HttpServlet {
 				menu(request, response);
 			} else if (command.equals("customer")) {
 				customer(request, response);
-			} else if (command.equals("orders")) {
-				orders(request, response);
+			} else if (command.equals("ordersAll")) {
+				ordersAll(request, response);
 			} else if (command.equals("customerInsert")) {
 				customerInsert(request, response);
 			}else if(command.equals("customerUpdateReq")){
@@ -211,23 +213,19 @@ public class Controller extends HttpServlet {
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
-	// 주문 번호로 주문 정보 검색
-	public void orders(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	// 고객 번호로 주문 정보 검색
+	public void ordersAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
-
-			OrdersDTO orders = service.getOneOrder(Integer.parseInt(request.getParameter("orderId")));
-			
-			if (orders != null) {
-				request.setAttribute("orders", orders);
-				url = "orders/ordersDetail.jsp";
-			} else {
-				request.setAttribute("errorMsg", "존재하지 않는 주문 정보.");
-			}
+			List<OrdersDTO> orders = service.getAllOrder(Integer.parseInt(request.getParameter("customerId")));
+			request.setAttribute("orders", orders);
+			url = "orders/ordersList.jsp";
 		} catch (Exception e) {
 			request.setAttribute("errorMsg", e.getMessage());
 			e.printStackTrace();
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
+
 }

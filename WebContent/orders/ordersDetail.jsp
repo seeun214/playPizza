@@ -20,11 +20,12 @@ ${requestScope.successMsg}
 
 <table border="1">
 	<tr>
-		<th>주문 번호</th><th>고객 아이디</th>
+		<th>주문 번호</th><th>메뉴</th><th>지점</th>
 	</tr>
  	<tr>
  		<td>${requestScope.orders.orderId}</td>
- 		<td>${requestScope.orders.customerId}</td>
+ 		<td>${requestScope.orders.menuId}</td>
+ 		<td>${requestScope.orders.branchId}</td>
  	</tr>
 </table>
 
