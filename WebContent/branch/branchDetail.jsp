@@ -33,9 +33,6 @@ ${requestScope.successMsg}
  	</tr>
 </table>
 
-<br><br><br>
-
-&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/index.html">메인 화면 이동</a>
 
 </center>
 </body>

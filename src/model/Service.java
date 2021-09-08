@@ -29,15 +29,15 @@ public class Service {
 	public CustomersDTO getCustomer(String sId) {
 		return customerDAO.getCustomer(sId);
 	}
-	
-	//특정 지점 검색
+
 	// 회원가입
-	public static void notExistActivist(String customerId) throws NotExistException, SQLException{
+	public static void notExistCustomer(String customerId) throws NotExistException, SQLException {
 		CustomersDTO customer = customerDAO.getCustomer(customerId);
-		if(customer == null){
+		if (customer == null) {
 			throw new NotExistException("검색하는 회원이 미존재합니다.");
 		}
 	}
+
 	public boolean addCustomer(CustomersDTO customer) throws NotExistException, MessageException {
 		return customerDAO.addCustomer(customer);
 	}
@@ -50,7 +50,6 @@ public class Service {
 		}
 		return branch;
 	}
-	
 
 	// 모든 지점 검색
 	public ArrayList<BranchesDTO> getAllBranches() throws SQLException, NotExistException {
@@ -87,13 +86,40 @@ public class Service {
 		return menuList;
 
 	}
-	
-	//주문 번호로 주문 정보 검색 반환
-		public OrdersDTO getOneOrder(int orderId) throws SQLException, NotExistException {
-			OrdersDTO order = ordersDAO.getOneOrder(orderId);
-			if(order == null){
-				throw new NotExistException();
-			}
-			return order;
+
+	// Orders
+	public static void notExistOrders(int orderId) throws NotExistException, SQLException {
+		OrdersDTO menu = ordersDAO.getOneOrder(orderId);
+		if (menu == null) {
+			throw new NotExistException("검색하신 주문 정보가 없습니다.");
 		}
+	}
+
+	// 주문 번호로 주문 정보 검색 반환
+	public OrdersDTO getOneOrder(int orderId) throws SQLException, NotExistException {
+		OrdersDTO order = ordersDAO.getOneOrder(orderId);
+		if (order == null) {
+			throw new NotExistException();
+		}
+		return order;
+	}
+
+	// 주문 정보 추가 메소드 반환
+	public static boolean addOrders(OrdersDTO order) throws SQLException {
+		return ordersDAO.addOrders(order);
+	}
+	
+	public boolean updateCustomer(String sId, String address, String phone) throws NotExistException, SQLException {
+		notExistCustomer(sId);
+		return customerDAO.updateCustomer(sId, address, phone);
+	}
+
+	public boolean deleteCustomer(String sId) throws NotExistException, SQLException {
+		notExistCustomer(sId);
+		boolean result = customerDAO.deleteCustomer(sId);
+		if(!result){
+			throw new NotExistException("고객 정보 삭제 실패");
+		}
+		return result;
+	}
 }
