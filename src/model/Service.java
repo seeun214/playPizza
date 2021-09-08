@@ -2,12 +2,14 @@ package model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import exception.NotExistException;
 import model.dto.BranchesDTO;
 import model.dto.CustomersDTO;
 import model.dto.MenuDTO;
 import model.dto.OrdersDTO;
+import model.entity.Orders;
 import probono.exception.MessageException;
 
 public class Service {
@@ -30,7 +32,7 @@ public class Service {
 		return customerDAO.getCustomer(sId);
 	}
 	
-	//특정 지점 검색
+	
 	// 회원가입
 	public static void notExistActivist(String customerId) throws NotExistException, SQLException{
 		CustomersDTO customer = customerDAO.getCustomer(customerId);
@@ -87,13 +89,14 @@ public class Service {
 		return menuList;
 
 	}
-	
-	//주문 번호로 주문 정보 검색 반환
-		public OrdersDTO getOneOrder(int orderId) throws SQLException, NotExistException {
-			OrdersDTO order = ordersDAO.getOneOrder(orderId);
-			if(order == null){
-				throw new NotExistException();
-			}
-			return order;
+		
+	//고객 번호로 주문 정보 검색 반환
+	public List<OrdersDTO> getAllOrder(int customerId) throws SQLException, NotExistException {
+		List<OrdersDTO> orders = ordersDAO.getAllOrder(customerId);
+		if(orders == null){
+			throw new NotExistException();
 		}
+		return orders;
+	}
+
 }

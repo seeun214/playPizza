@@ -32,16 +32,15 @@
 	
 	<br>
 	<form action="pizza?command=menu" method="post" >
-		
 		메뉴 이름 : <input type="text" name="name"><input type="submit" value="검색">
 	</form>
 	
 	<br><br><br>
 	
-	<br>
-	<form action="pizza?command=orders" method="post" >
-		
-		주문 번호 : <input type="text" name="orderId"><input type="submit" value="검색">
+	<form action="pizza?command=ordersAll" method="post" >
+		고객 번호 : <input type="text" name="customerId"><input type="submit" value="검색">
 	</form>
+	
+	
 </body>
 </html>
