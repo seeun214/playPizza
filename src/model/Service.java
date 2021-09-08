@@ -2,14 +2,12 @@ package model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import exception.NotExistException;
 import model.dto.BranchesDTO;
 import model.dto.CustomersDTO;
 import model.dto.MenuDTO;
 import model.dto.OrdersDTO;
-import model.entity.Orders;
 import probono.exception.MessageException;
 
 public class Service {

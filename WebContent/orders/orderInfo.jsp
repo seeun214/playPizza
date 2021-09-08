@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h3>주문 완료</h3>
+<h3>${requestScope.customer.SId}님의 주문이 완료되었습니다~ &#128523;</h3>
 
 <% 
 	request.setCharacterEncoding("UTF-8");
