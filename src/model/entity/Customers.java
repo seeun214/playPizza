@@ -35,6 +35,7 @@ public class Customers {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUSTOMER_SEQ_GENERATOR")
 	private int customerId;
 	private String sId;
+	private String password;
 	private String address;
 	private String phone;
 	
@@ -43,9 +44,8 @@ public class Customers {
 
 	@Override
 	public String toString() {
-		return "Customers [customerId=" + customerId + ", sId=" + sId + ", address=" + address + ", phone=" + phone
-				+ "]";
-	}
-	
+		return "Customers [customerId=" + customerId + ", sId=" + sId + ", password=" + password + ", address="
+				+ address + ", phone=" + phone + "]";
+	}	
 	
 }

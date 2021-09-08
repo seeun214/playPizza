@@ -133,12 +133,13 @@ public class Controller extends HttpServlet {
 		String url = null;
 
 		String sId = request.getParameter("sId");
+		String password = request.getParameter("password");
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
 
 		if (sId != null && sId.length() != 0 && address != null) {
 
-			CustomersDTO customer = new CustomersDTO(sId, address, phone);
+			CustomersDTO customer = new CustomersDTO(sId, password, address, phone);
 			try {
 				boolean result = service.addCustomer(customer);
 				if (result) {
