@@ -36,7 +36,7 @@
     <option value="상봉점" ></option>
   </datalist>
   <br><br>
-  <input type="submit" value="주문!">
+  <input type="submit" value="주문 !">
 </form>
   
   

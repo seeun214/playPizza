@@ -270,8 +270,8 @@ public class Controller extends HttpServlet {
 		Customers customer = null;
 		Menu menu = null;
 		Branches branch = null;
+		
 
-		System.out.println("1");
 		String url = "showError.jsp";
 
 		String id = (String) request.getSession().getAttribute("id");
@@ -299,15 +299,14 @@ public class Controller extends HttpServlet {
 				url = "orders/order.jsp";
 				request.getParameter("orderInsert");
 				boolean orders = service.addOrders(newOrder);
-				System.out.println(6);
+				
 
-				System.out.println("7");
 				if (newOrder != null) {
 					request.setAttribute("orderInsert", newOrder);
 					request.setAttribute("successMsg", "추가 완료");
 					url = "orders/orderInfo.jsp";
 					tx.commit();
-					System.out.println("8");
+					
 				} else {
 					request.setAttribute("errorMsg", "다시 시도하세요");
 				}
