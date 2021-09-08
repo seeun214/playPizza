@@ -43,9 +43,9 @@ public class Service {
 		return customerDAO.addCustomer(customer);
 	}
 
-	public boolean updateCustomer(String sId, String address, String phone) throws NotExistException, SQLException {
+	public boolean updateCustomer(String sId, String password, String address, String phone) throws NotExistException, SQLException {
 		notExistCustomer(sId);
-		return customerDAO.updateCustomer(sId, address, phone);
+		return customerDAO.updateCustomer(sId, password, address, phone);
 	}
 
 	public boolean deleteCustomer(String sId) throws NotExistException, SQLException {

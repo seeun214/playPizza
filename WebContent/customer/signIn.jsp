@@ -21,6 +21,9 @@
 			
 			<label for="sId">ID</label>
 			<input class="w3-input" type="text" id="sId" name="sId" style="margin-bottom:20px;">
+			
+			<label for="password">Password</label>
+			<input class="w3-input" type="password" id="password" name="password" style="margin-bottom:20px;">
 				
 			<label for="address">주소</label>
 			<input class="w3-input" type="text" id="address" name="address" style="margin-bottom:20px;">

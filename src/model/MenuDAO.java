@@ -29,7 +29,7 @@ public class MenuDAO {
 		try {
 			Menu m = em.createNamedQuery("Menu.findByMenuName", Menu.class).setParameter("name", name)
 					.getSingleResult();
-			menu = new MenuDTO(m.getMenuId(), m.getName(), m.getPrice());
+			menu = new MenuDTO(m.getMenuId(), m.getName(), m.getPrice(), m.getImgname());
 			System.out.println(menu);
 		} catch (Exception e) {
 			em.getTransaction().rollback();
@@ -47,7 +47,7 @@ public class MenuDAO {
 		try {
 			list = em.createNativeQuery("SELECT * FROM Menu", Menu.class).getResultList();
 			for (Menu m : list) {
-				arr.add(new MenuDTO(m.getMenuId(), m.getName(), m.getPrice()));
+				arr.add(new MenuDTO(m.getMenuId(), m.getName(), m.getPrice(), m.getImgname()));
 			}
 		} catch (Exception e) {
 			em.getTransaction().rollback();
