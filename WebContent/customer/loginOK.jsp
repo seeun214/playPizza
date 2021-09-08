@@ -10,5 +10,5 @@
 		session.setAttribute("id", id);
 	}
 	
-	response.sendRedirect("customerUpdate.jsp");
+	response.sendRedirect("../index.jsp");
 %>
