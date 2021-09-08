@@ -8,6 +8,7 @@
 </head>
 <body>
 
+
 	<br>
 	<font color="black">주문 하기</font>
 	<br><br>
@@ -34,13 +35,16 @@
   </select>
   <br><br>
   <input type="submit" value="Submit">
+  <c:if test="${empty sessionScope.id}">
+  </c:if>
+  <c:if test="${not empty sessionScope.id}">
+  </c:if>
 </form>
 
 	<br>
 	<hr>
 	<a href="${pageContext.request.contextPath}">메인으로 돌아가기</a>
 	<br>
-
 
 </body>
 </html>
