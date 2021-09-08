@@ -116,5 +116,14 @@ public class Service {
 		}
 		return orders;
 	}
+	
+	public boolean deleteOrder(int orderId) throws NotExistException, SQLException {
+		boolean result = ordersDAO.deleteOrder(orderId);
+		System.out.println(result);
+		if (!result) {
+			throw new NotExistException("주문 삭제 실패");
+		}
+		return result;
+	}
 
 }

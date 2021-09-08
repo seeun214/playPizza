@@ -228,7 +228,17 @@ public class Controller extends HttpServlet {
 	public void orderDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String url = "showError.jsp";
-
+		try {
+			boolean result = service.deleteOrder(Integer.parseInt(request.getParameter("orderId")));
+			if (result) {
+//				url = "orders/ordersList";
+			} else {
+				request.setAttribute("errorMsg", "삭제 실패");
+			}
+		} catch (Exception s) {
+			request.setAttribute("errorMsg", s.getMessage());
+			s.printStackTrace();
+		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
