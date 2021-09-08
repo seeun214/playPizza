@@ -16,7 +16,7 @@
 <h3>${requestScope.customer.SId}님 안녕하세요!</h3>
 <p>현재 주소: ${requestScope.customer.address}&nbsp;&nbsp;/&nbsp;&nbsp;연락 가능 번호: ${requestScope.customer.phone}</p>
 
-<button class="w3-button w3-black w3-padding-midium w3-large w3-margin-top">주문 확인</button>
+<button onclick="location.href='pizza?command=ordersAll&customerId=${requestScope.customer.customerId}'"class="w3-button w3-black w3-padding-midium w3-large w3-margin-top">주문 확인</button>
 <button onclick="location.href='pizza?command=customerUpdateReq&sId=${requestScope.customer.SId}'" class="w3-button w3-black w3-padding-midium w3-large w3-margin-top">회원 정보 수정</button>
 <button onclick="location.href='pizza?command=customerDelete&sId=${requestScope.customer.SId}'"class="w3-button w3-black w3-padding-midium w3-large w3-margin-top">회원 탈퇴</button>
 </header>
