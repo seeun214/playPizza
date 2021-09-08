@@ -1,10 +1,18 @@
 package model;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 
 import javax.persistence.EntityManager;
+import javax.servlet.jsp.tagext.IterationTag;
 
 import model.dto.OrdersDTO;
+import model.entity.Branches;
+import model.entity.Customers;
+import model.entity.Menu;
 import model.entity.Orders;
 import model.util.DBUtil;
 
@@ -17,8 +25,8 @@ public class OrdersDAO {
 	public static OrdersDAO getInstance() {
 		return instance;
 	}
-	
-	//주문 번호로 주문 정보 검색
+
+	//고객 번호로 주문 정보 검색
 	public OrdersDTO getOneOrder(int orderId) throws SQLException {
 		EntityManager em = DBUtil.getEntityManager();
 		em.getTransaction().begin();
@@ -30,15 +38,16 @@ public class OrdersDAO {
 			o = (Orders)em.createNamedQuery("Order.findByOrderId", Orders.class).setParameter("orderId", orderId).getSingleResult();
 			
 			orders = new OrdersDTO(o.getOrderId(), o.getCustomerId(), o.getMenuId(), o.getBranchId());
-			
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			em.close();
+			em = null;
 		}
 		return orders;
 	}
+
 	
 //	//고객 아이디로 주문 정보 검색
 //	public OrdersDTO getOneOrder(String sId) throws SQLException {
@@ -61,7 +70,7 @@ public class OrdersDAO {
 //		return order;
 //	}
 	
-	//주문 정보 추가 메소드
+
 	public boolean addOrders(OrdersDTO order) throws SQLException{
 		EntityManager em = DBUtil.getEntityManager();
 		em.getTransaction().begin();
@@ -80,4 +89,5 @@ public class OrdersDAO {
 		}
 		return result;
 	} 
+
 }

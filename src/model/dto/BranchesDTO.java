@@ -21,7 +21,7 @@ public class BranchesDTO {
 
 	@Override
 	public String toString() {
-		return "Branches [branchId=" + branchId + ", name=" + name + ", address=" + address + ", phone=" + phone + "]";
+		return "지점id : " + branchId + ", 지점명 : " + name + ", 주소 : " + address + ", 전화번호 : " + phone;
 	}
 
 }

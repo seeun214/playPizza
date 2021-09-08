@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -15,10 +16,12 @@ import model.dto.BranchesDTO;
 import model.dto.CustomersDTO;
 import model.dto.MenuDTO;
 import model.dto.OrdersDTO;
+import model.entity.Orders;
 import model.entity.Branches;
 import model.entity.Customers;
 import model.entity.Menu;
 import model.util.DBUtil;
+
 
 @WebServlet("/pizza")
 public class Controller extends HttpServlet {
@@ -41,10 +44,10 @@ public class Controller extends HttpServlet {
 				menu(request, response);
 			} else if (command.equals("customer")) {
 				customer(request, response);
-			} else if (command.equals("customerInsert")) {
-				customerInsert(request, response);
 			} else if (command.equals("orders")) {
 				orders(request, response);
+			} else if (command.equals("customerInsert")) {
+				customerInsert(request, response);
 			} else if(command.equals("ordersInsert")){// 주문 정보 추가
 				ordersInsert(request, response);
 			}else if(command.equals("customerUpdateReq")){
@@ -53,6 +56,8 @@ public class Controller extends HttpServlet {
 				customerUpdate(request, response);
 			}else if(command.equals("customerDelete")){
 				customerDelete(request, response);
+			}else if(command.equals("orderDelete")){
+				orderDelete(request, response);
 			}
 		} catch (Exception s) {
 			request.setAttribute("errorMsg", s.getMessage());
@@ -98,7 +103,7 @@ public class Controller extends HttpServlet {
 			System.out.println(c);
 			if (c != null) {
 				request.setAttribute("customer", c);
-				url = "customer/customerDetail.jsp";
+				url = "customer/mypage.jsp";
 			} else {
 				request.setAttribute("errorMsg", "존재하지 않는 고객 정보입니다.");
 			}
@@ -127,7 +132,7 @@ public class Controller extends HttpServlet {
 			boolean result = service.updateCustomer(request.getParameter("sId"), request.getParameter("address"), request.getParameter("phone"));
 			if(result) {
 				request.setAttribute("customer", service.getCustomer(request.getParameter("sId")));
-				url = "customer/customerDetail.jsp";
+				url = "customer/mypage.jsp";
 			}else {
 				request.setAttribute("errorMsg", "수정 실패");
 			}
@@ -144,7 +149,6 @@ public class Controller extends HttpServlet {
 		try {
 			boolean result = service.deleteCustomer(request.getParameter("sId"));
 			if(result) {
-//				url = "/index.jsp";
 				url = "customer/logout.jsp";
 			}else {
 				request.setAttribute("errorMsg", "삭제 실패");
@@ -219,23 +223,24 @@ public class Controller extends HttpServlet {
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
-	// 주문 번호로 주문 정보 검색
+
+	// 고객 번호로 주문 정보 검색
 	public void orders(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
-
 			OrdersDTO orders = service.getOneOrder(Integer.parseInt(request.getParameter("orderId")));
-
-			if (orders != null) {
-				request.setAttribute("orders", orders);
-				url = "orders/ordersDetail.jsp";
-			} else {
-				request.setAttribute("errorMsg", "존재하지 않는 주문 정보.");
-			}
+			request.setAttribute("orders", orders);
+			url = "orders/ordersList.jsp";
 		} catch (Exception e) {
 			request.setAttribute("errorMsg", e.getMessage());
 			e.printStackTrace();
 		}
+		request.getRequestDispatcher(url).forward(request, response);
+	}
+	
+	public void orderDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "showError.jsp";
+	
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
