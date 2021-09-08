@@ -43,13 +43,8 @@ public class Menu {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(super.toString());
-		builder.append("메뉴 : ");
-		builder.append(name);
-		builder.append("가격 : ");
-		builder.append(price);
-		return builder.toString();
+		return "메뉴 : " + name + ", 가격 : " + price;
 	}
+
 		
 }

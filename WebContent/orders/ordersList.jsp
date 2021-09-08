@@ -11,25 +11,30 @@
 <body>
 <h1>전체 주문 정보</h1>
 
-<font color="black">메뉴 이름을 클릭하여 가격을 확인하세요.</font>
-
 <table border="1">
 	<thead>
 		<tr>
-			<th>주문 번호</th><th>고객 이름</th><th>메뉴</th><th>지점명</th>
+			<th>주문 번호</th><th>메뉴</th><th>지점</th>
 		</tr>
 	</thead>
 	
-	<c:forEach items="${requestScope.ordersAll}" var="data">
+	<c:forEach items="${requestScope.orders}" var="data">
 		 <tr>
 		 	<td>${data.orderId}</td>
-		 	<td>${data.customerId.name}</td>
-		 	<td>${data.menuId}</td>
-		 	<td>${data.branchId.name}</td>
+ 			<td>${data.menuId}</td>
+ 			<td>${data.branchId}</td>
 		 </tr>
 	 </c:forEach>
 
 </table>
+<br>
 
+<form action="pizza?command=orderDelete" method="post" >
+	<label for = "orderId">주문 취소하기 : </label>
+	<select name="orderId" id="orderId">
+		
+	</select>
+	<input type="submit" value="Submit">
+</form>
 </body>
 </html>
