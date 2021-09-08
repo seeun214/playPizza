@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import model.dto.OrdersDTO;
+import model.entity.Customers;
 import model.entity.Orders;
 import model.util.DBUtil;
 
@@ -59,6 +60,26 @@ public class OrdersDAO {
 			em.getTransaction().rollback();
 		} finally {
 			em.close();
+		}
+		return result;
+	}
+	
+	public boolean deleteOrder(int orderId) {
+		EntityManager em = DBUtil.getEntityManager();	
+		em.getTransaction().begin();
+		boolean result = false;
+		
+		try {
+			em.remove(em.createNamedQuery("Order.findByOrderId", Orders.class).setParameter("orderId", orderId).getSingleResult());
+
+			em.getTransaction().commit();
+
+			result = true;
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+		} finally {
+			em.close();
+			em = null;
 		}
 		return result;
 	}
