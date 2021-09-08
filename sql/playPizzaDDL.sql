@@ -1,4 +1,4 @@
--- 메뉴 정보
+﻿-- 메뉴 정보
 DROP TABLE menu cascade constraint;
 
 -- 고객 정보
@@ -19,6 +19,7 @@ CREATE SEQUENCE CUSTOMER_SEQ;
 CREATE TABLE customers (
        customer_id          	NUMBER  PRIMARY KEY,
        sid               		VARCHAR2(50) NOT NULL,
+       password              	VARCHAR2(50) NOT NULL,
        address					VARCHAR2(50) NOT NULL,
        phone                	VARCHAR2(50) NOT NULL
 );
@@ -27,7 +28,8 @@ CREATE SEQUENCE MENU_SEQ;
 CREATE TABLE menu (
        menu_id        			NUMBER PRIMARY KEY,
        name                		VARCHAR2(50) NOT NULL,
-       price          			NUMBER NOT NULL
+       price          			NUMBER NOT NULL,
+       imgname					VARCHAR2(50) NOT NULL
 );
 
 CREATE SEQUENCE BRANCHES_SEQ;
@@ -46,6 +48,6 @@ CREATE TABLE orders (
        branch_id           		NUMBER NOT NULL     
 );
 
-ALTER TABLE orders ADD FOREIGN KEY (customer_id) REFERENCES customers (customer_id);
-ALTER TABLE orders ADD FOREIGN KEY (menu_id) REFERENCES menu (menu_id);
-ALTER TABLE orders ADD FOREIGN KEY (branch_id) REFERENCES branches  (branch_id);
+ALTER TABLE orders ADD FOREIGN KEY (customer_id) REFERENCES customers (customer_id) ON DELETE CASCADE;
+ALTER TABLE orders ADD FOREIGN KEY (menu_id) REFERENCES menu (menu_id) ON DELETE CASCADE;
+ALTER TABLE orders ADD FOREIGN KEY (branch_id) REFERENCES branches  (branch_id) ON DELETE CASCADE;

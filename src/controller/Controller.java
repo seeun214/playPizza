@@ -133,12 +133,13 @@ public class Controller extends HttpServlet {
 		String url = null;
 
 		String sId = request.getParameter("sId");
+		String password = request.getParameter("password");
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
 
-		if (sId != null && sId.length() != 0 && address != null) {
+		if (sId != null && sId.length() != 0 && password != null && address != null && phone != null) {
 
-			CustomersDTO customer = new CustomersDTO(sId, address, phone);
+			CustomersDTO customer = new CustomersDTO(sId, password, address, phone);
 			try {
 				boolean result = service.addCustomer(customer);
 				if (result) {
@@ -192,8 +193,7 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
-			boolean result = service.updateCustomer(request.getParameter("sId"), request.getParameter("address"),
-					request.getParameter("phone"));
+			boolean result = service.updateCustomer(request.getParameter("sId"), request.getParameter("password"), request.getParameter("address"), request.getParameter("phone"));
 			if (result) {
 				request.setAttribute("customer", service.getCustomer(request.getParameter("sId")));
 				url = "customer/mypage.jsp";
@@ -229,9 +229,11 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
+
 			boolean result = service.deleteOrder(Integer.parseInt(request.getParameter("orderId")));
+
 			if (result) {
-//				url = "orders/ordersList";
+				url = "orders/ordersList.jsp";
 			} else {
 				request.setAttribute("errorMsg", "삭제 실패");
 			}
@@ -247,6 +249,7 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
+
 			List<OrdersDTO> orders = service.getAllOrder(Integer.parseInt(request.getParameter("customerId")));
 			request.setAttribute("orders", orders);
 			url = "orders/ordersList.jsp";
@@ -258,7 +261,8 @@ public class Controller extends HttpServlet {
 	}
 
 	// 주문 정보 추가
-	protected void ordersInsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void ordersInsert(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		EntityManager em = DBUtil.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 
@@ -267,6 +271,7 @@ public class Controller extends HttpServlet {
 		Menu menu = null;
 		Branches branch = null;
 		
+
 		String url = "showError.jsp";
 
 		String id = (String) request.getSession().getAttribute("id");
@@ -276,8 +281,9 @@ public class Controller extends HttpServlet {
 		String bName = request.getParameter("branch");
 		System.out.println("bName" + bName);
 
-		customer = (Customers) em.createNamedQuery("Customer.findBySId").setParameter("sId", id)
-				.getSingleResult();
+		// ordersDao.convertDTO(id, mname, bname) return newOrderDTO
+		// ordersDAO.addOrders(ordersDao.convertDTO(id, mname, bname)) // order idx
+		customer = (Customers) em.createNamedQuery("Customer.findBySId").setParameter("sId", id).getSingleResult();
 		menu = (Menu) em.createNamedQuery("Menu.findByMenuName").setParameter("name", mName).getSingleResult();
 		branch = (Branches) em.createNamedQuery("Branch.findByName").setParameter("name", bName).getSingleResult();
 
@@ -294,6 +300,7 @@ public class Controller extends HttpServlet {
 				request.getParameter("orderInsert");
 				boolean orders = service.addOrders(newOrder);
 				
+
 				if (newOrder != null) {
 					request.setAttribute("orderInsert", newOrder);
 					request.setAttribute("successMsg", "추가 완료");
