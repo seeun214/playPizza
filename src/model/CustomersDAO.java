@@ -89,6 +89,7 @@ public class CustomersDAO {
 			em.getTransaction().rollback();
 		} finally {
 			em.close();
+			em = null;
 		}
 		return result;
 	}

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Customer Detail</title>
+<title>My Page</title>
 <jsp:include page="../common/styleLink.jsp"></jsp:include>
 </head>
 <body>
@@ -14,17 +14,17 @@
 <header class="w3-container" style="padding:128px 16px; margin: 0 400px">
 <h1>마이페이지</h1>
 <h3>${requestScope.customer.SId}님 안녕하세요!</h3> <br>
-<h5>회원 정보 수정</h5>
---------------------- <br>
+
+<button class="w3-button w3-black w3-padding-midium w3-large w3-margin-top">주문 확인</button>
+<button onclick="location.href='pizza?command=customerUpdateReq&sId=${requestScope.customer.SId}'" class="w3-button w3-black w3-padding-midium w3-large w3-margin-top">회원 정보 수정</button>
+<button onclick="location.href='pizza?command=customerDelete&sId=${requestScope.customer.SId}'"class="w3-button w3-black w3-padding-midium w3-large w3-margin-top">회원 탈퇴</button>
+<br>
 ID : ${requestScope.customer.SId} <br>
 주소 : ${requestScope.customer.address} <br>
 전화번호 : ${requestScope.customer.phone} <br>
 ---------------------<br><br>
 </header>
 
-<a href="pizza?command=customerUpdateReq&sId=${requestScope.customer.SId}">수정하기</a>
-
-<a href="pizza?command=customerDelete&sId=${requestScope.customer.SId}">탈퇴하기</a>
-<br><hr><br>
+<jsp:include page="../common/footer.jsp"></jsp:include>
 </body>
 </html>
