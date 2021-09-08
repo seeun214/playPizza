@@ -17,7 +17,7 @@
 		session.setAttribute("id", id);
 	}
 	
-	response.sendRedirect("orderInfo.jsp");
+	response.sendRedirect("fail.jsp");
 %>
 
 </body>
