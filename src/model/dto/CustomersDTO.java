@@ -15,24 +15,26 @@ import model.entity.Customers;
 public class CustomersDTO {
 	private int customerId;
 	private String sId;
+	private String password;
 	private String address;
 	private String phone;
 	
-	public CustomersDTO(String sId, String address, String phone) {
+	public CustomersDTO(String sId, String password, String address, String phone) {
 		super();
 		this.sId = sId;
+		this.password = password;
 		this.address = address;
 		this.phone = phone;
 	}
 	
 	@Override
 	public String toString() {
-		return "Customers [customerId=" + customerId + ", sId=" + sId + ", address=" + address + ", phone=" + phone
+		return "Customers [customerId=" + customerId + ", sId=" + sId + ", password=" + password + ", address=" + address + ", phone=" + phone
 				+ "]";
 	}
 
 	public Customers toEntity() {
-		return Customers.builder().customerId(customerId).sId(sId).address(address).phone(phone).build();
+		return Customers.builder().customerId(customerId).sId(sId).password(password).address(address).phone(phone).build();
 	}
 
 }
