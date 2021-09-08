@@ -1,5 +1,7 @@
 package model.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,11 +22,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
+
 @Entity
 @SequenceGenerator(name = "ORDERS_SEQ_GENERATOR",
 sequenceName = "ORDERS_SEQ", 
 initialValue = 1,
 allocationSize = 1)
+@NamedQuery(query = "select o from Orders o where o.orderId=:orderId order by o.orderId", name = "Order.findByOrderId")
+@NamedQuery(query = "select o from Orders o where o.customerId.customerId=:customerId", name = "Order.findByCustomerId")
 public class Orders {
 	@Id
 	@Column(name="order_id")
