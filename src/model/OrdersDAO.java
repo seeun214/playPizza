@@ -51,11 +51,10 @@ public class OrdersDAO {
 		boolean result = false;
 
 		try {
+			
 			em.persist(order.toEntity());
 			em.getTransaction().commit();
-
 			result = true;
-
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 		} finally {

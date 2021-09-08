@@ -8,19 +8,15 @@
 </head>
 <body>
 
-<h3>${requestScope.customer.SId}님의 주문이 완료되었습니다~ &#128523;</h3>
+<h3><%= session.getAttribute("id") %>님의 주문이 완료되었습니다~ &#128523;</h3>
+        <ul>
+            <li>주문자: <%= session.getAttribute("id") %></li>
+            <li>메뉴: <%= request.getParameter("menu") %></li>
+            <li>지점명: <%= request.getParameter("branch") %></li>
+        </ul>
+        
 
-<% 
-	request.setCharacterEncoding("UTF-8");
-	String id = request.getParameter("id");
-	String menu = request.getParameter("menu");
-	String branch = request.getParameter("branch");
-	
-	if (id != null && id.equals(id)) {
-		session.setAttribute("id", id);
-	}
-	
-%>
+<br><hr>
 
 	<button onclick="location.href='pizza?command=orderDelete&orderId=${requestScope.orders.orderId}'">주문 취소!</button>
 	
