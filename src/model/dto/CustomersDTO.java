@@ -29,12 +29,12 @@ public class CustomersDTO {
 	
 	@Override
 	public String toString() {
-		return "Customers [customerId=" + customerId + ", sId=" + sId + ", address=" + address + ", phone=" + phone
+		return "Customers [customerId=" + customerId + ", sId=" + sId + ", password=" + password + ", address=" + address + ", phone=" + phone
 				+ "]";
 	}
 
 	public Customers toEntity() {
-		return Customers.builder().customerId(customerId).sId(sId).address(address).phone(phone).build();
+		return Customers.builder().customerId(customerId).sId(sId).password(password).address(address).phone(phone).build();
 	}
 
 }

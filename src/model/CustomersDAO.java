@@ -54,11 +54,12 @@ public class CustomersDAO {
 		return result;
 	}
 
-	public boolean updateCustomer(String sId, String address, String phone) {
+	public boolean updateCustomer(String sId, String password, String address, String phone) {
 		EntityManager em = DBUtil.getEntityManager();
 		em.getTransaction().begin();
 		boolean result = false;
 		try {
+			em.createNamedQuery("Customer.findBySId", Customers.class).setParameter("sId", sId).getSingleResult().setPassword(password);;
 			em.createNamedQuery("Customer.findBySId", Customers.class).setParameter("sId", sId).getSingleResult().setAddress(address);
 			em.createNamedQuery("Customer.findBySId", Customers.class).setParameter("sId", sId).getSingleResult().setPhone(phone);
 

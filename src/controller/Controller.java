@@ -137,7 +137,7 @@ public class Controller extends HttpServlet {
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
 
-		if (sId != null && sId.length() != 0 && address != null) {
+		if (sId != null && sId.length() != 0 && password != null && address != null && phone != null) {
 
 			CustomersDTO customer = new CustomersDTO(sId, password, address, phone);
 			try {
@@ -193,8 +193,7 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
-			boolean result = service.updateCustomer(request.getParameter("sId"), request.getParameter("address"),
-					request.getParameter("phone"));
+			boolean result = service.updateCustomer(request.getParameter("sId"), request.getParameter("password"), request.getParameter("address"), request.getParameter("phone"));
 			if (result) {
 				request.setAttribute("customer", service.getCustomer(request.getParameter("sId")));
 				url = "customer/mypage.jsp";
