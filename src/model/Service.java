@@ -41,7 +41,7 @@ public class Service {
 	public boolean addCustomer(CustomersDTO customer) throws NotExistException, MessageException {
 		return customerDAO.addCustomer(customer);
 	}
-  
+
 	public boolean updateCustomer(String sId, String address, String phone) throws NotExistException, SQLException {
 		notExistCustomer(sId);
 		return customerDAO.updateCustomer(sId, address, phone);
@@ -51,7 +51,7 @@ public class Service {
 		notExistCustomer(sId);
 		boolean result = customerDAO.deleteCustomer(sId);
 		System.out.println(result);
-		if(!result){
+		if (!result) {
 			throw new NotExistException("고객 정보 삭제 실패");
 		}
 		return result;
@@ -102,13 +102,27 @@ public class Service {
 
 	}
 
-	//고객 번호로 주문 내역 검색
-	public OrdersDTO getOneOrder(int orderId) throws SQLException, NotExistException {
-		return ordersDAO.getOneOrder(orderId);
-	}
-
 	// 주문 정보 추가 메소드 반환
 	public static boolean addOrders(OrdersDTO order) throws SQLException {
 		return ordersDAO.addOrders(order);
 	}
+
+	// 고객 번호로 주문 내역 검색
+	public List<OrdersDTO> getAllOrder(int customerId) throws SQLException, NotExistException {
+		List<OrdersDTO> orders = ordersDAO.getAllOrder(customerId);
+		if (orders == null || orders.size() == 0) {
+			throw new NotExistException("주문내역이 없습니다.");
+		}
+		return orders;
+	}
+	
+	public boolean deleteOrder(int orderId) throws NotExistException, SQLException {
+		boolean result = ordersDAO.deleteOrder(orderId);
+		System.out.println(result);
+		if (!result) {
+			throw new NotExistException("주문 삭제 실패");
+		}
+		return result;
+	}
+
 }
