@@ -9,7 +9,7 @@
 </head>
 
 <header>
-	<jsp:include page="../common/loginHeader.jsp"></jsp:include>
+	<jsp:include page="../common/navbar.jsp"></jsp:include>
 </header>
 <body>
 
