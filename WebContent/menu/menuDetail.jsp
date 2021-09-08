@@ -28,5 +28,7 @@ ${requestScope.successMsg}
  	</tr>
 </table>
 
+<br><hr>
+<a href="${pageContext.request.contextPath}">메인으로 돌아가기</a> <br>
 </body>
 </html>

@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+
 import javax.persistence.EntityManager;
 import javax.servlet.jsp.tagext.IterationTag;
 
-import model.dto.BranchesDTO;
-import model.dto.CustomersDTO;
-import model.dto.MenuDTO;
 import model.dto.OrdersDTO;
 import model.entity.Branches;
 import model.entity.Customers;
@@ -49,5 +47,47 @@ public class OrdersDAO {
 		}
 		return orders;
 	}
+
+	
+//	//고객 아이디로 주문 정보 검색
+//	public OrdersDTO getOneOrder(String sId) throws SQLException {
+//		EntityManager em = DBUtil.getEntityManager();
+//		em.getTransaction().begin();
+//		OrdersDTO order = null;
+//		CustomersDTO customer = null;
+//		System.out.println(customer.getSId());
+//		
+//		try {
+//			Customers c = em.createNamedQuery("Customer.findBySId", Customers.class).setParameter("sId", sId).getSingleResult();
+//			Orders o = em.createNamedQuery("Order.findByCustomerId", Orders.class).setParameter("customerId", c).getSingleResult();
+//			order = new OrdersDTO(o.getOrderId(), o.getCustomerId(), o.getMenuId(), o.getBranchId());
+//		} catch(Exception e) {
+//			em.getTransaction().rollback();
+//		} finally {
+//			em.close();
+//			em = null;
+//		}
+//		return order;
+//	}
+	
+
+	public boolean addOrders(OrdersDTO order) throws SQLException{
+		EntityManager em = DBUtil.getEntityManager();
+		em.getTransaction().begin();
+		boolean result = false;
+		
+		try {
+			em.persist(order.toEntity());
+			em.getTransaction().commit();
+
+			result = true;
+
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+		} finally {
+			em.close();
+		}
+		return result;
+	} 
 
 }

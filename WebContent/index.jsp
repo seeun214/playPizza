@@ -34,6 +34,7 @@
 	<form action="pizza?command=menu" method="post" >
 		메뉴 이름 : <input type="text" name="name"><input type="submit" value="검색">
 	</form>
+
 	
 	
 </body>
