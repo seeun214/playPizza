@@ -7,7 +7,7 @@
 	&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/customer/logIn.html">로그인</a> <br><br>
 </c:if>
 <c:if test="${not empty sessionScope.id}">
-	${sessionScope.id}의 <a href="${pageContext.request.contextPath}/customer/customerUpdate.jsp">My Page</a>
+	${sessionScope.id}의 <a href="pizza?command=customer&sId=${sessionScope.id}" >My Page</a>
 	&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/customer/logout.jsp">로그아웃</a> <br><br>
 </c:if>
 	

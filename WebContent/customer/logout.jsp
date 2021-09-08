@@ -3,5 +3,5 @@
 
 <%
 	session.removeAttribute("id");
-	response.sendRedirect("../index.jsp");
+	response.sendRedirect(request.getContextPath());
 %>
