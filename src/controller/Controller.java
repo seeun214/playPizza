@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +15,10 @@ import model.dto.BranchesDTO;
 import model.dto.CustomersDTO;
 import model.dto.MenuDTO;
 import model.dto.OrdersDTO;
+import model.entity.Branches;
+import model.entity.Customers;
+import model.entity.Menu;
+import model.util.DBUtil;
 
 @WebServlet("/pizza")
 public class Controller extends HttpServlet {
@@ -35,12 +41,14 @@ public class Controller extends HttpServlet {
 				menu(request, response);
 			} else if (command.equals("customer")) {
 				customer(request, response);
-			} else if (command.equals("orders")) {
-				orders(request, response);
 			} else if (command.equals("customerInsert")) {
 				customerInsert(request, response);
-			}
-		} catch (Exception s) {
+			} else if (command.equals("orders")) {
+				orders(request, response);
+//			} else if(command.equals("ordersInsert")){// 주문 정보 추가
+//				ordersInsert(request, response);
+		}
+		}catch (Exception s) {
 			request.setAttribute("errorMsg", s.getMessage());
 			request.getRequestDispatcher("showError.jsp").forward(request, response);
 			s.printStackTrace();
@@ -164,7 +172,7 @@ public class Controller extends HttpServlet {
 		try {
 
 			OrdersDTO orders = service.getOneOrder(Integer.parseInt(request.getParameter("orderId")));
-			
+
 			if (orders != null) {
 				request.setAttribute("orders", orders);
 				url = "orders/ordersDetail.jsp";
@@ -177,4 +185,50 @@ public class Controller extends HttpServlet {
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
+
+	// 주문 정보 추가
+//	protected void ordersInsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		EntityManager em = DBUtil.getEntityManager();
+//		EntityTransaction tx = em.getTransaction();
+//
+//		String url = "showError.jsp";
+//
+//		String id = request.getParameter("customerId");
+//		Menu mName = request.getParameter("menu");
+//		String bName = request.getParameter("branch");
+//
+//		int oCustomer = Integer.parseInt(id);
+//		int oMenu = Integer.parseInt(mName);
+//		int oBranch = Integer.parseInt(bName);
+//		
+//		Customers customer = em.find(Customers.class, oCustomer);
+//		Menu menu = em.find(Menu.class, oMenu);
+//		Branches branch = em.find(Branches.class, oBranch);
+//		OrdersDTO newOrder = null;
+//		
+//		// 해킹등으로 불합리하게 요청도 될수 있다는 가정하에 모든 데이터가 제대로 전송이 되었는지를 검증하는 로직
+//		if (id != null && id.length() != 0 && mName != null && bName != null) {
+//			
+//				try {
+//					tx.begin();
+//					newOrder.setCustomerId(customer);
+//					newOrder.setMenuId(menu);
+//					newOrder.setTotalPrice(coin.getCoinPrice() * order.getOrderQty());
+//			
+////				OrdersDTO orders = new OrdersDTO(id, mName, bName);
+//				boolean result = service.addOrders(orders);
+//				if (result) {
+//					request.setAttribute("orders", orders);
+//					request.setAttribute("successMsg", "추가 완료");
+//					url = "orders/ordersDetail.jsp";
+//				} else {
+//					tx.commit();
+//					request.setAttribute("errorMsg", "다시 시도하세요");
+//				}
+//			} catch (Exception s) {
+//				request.setAttribute("errorMsg", s.getMessage());
+//			}
+//			request.getRequestDispatcher(url).forward(request, response);
+//		}
+//	}
 }

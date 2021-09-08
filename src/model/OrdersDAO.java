@@ -69,4 +69,24 @@ public class OrdersDAO {
 //		}
 //		return order;
 //	}
+	
+	//주문 정보 추가 메소드
+	public boolean addOrders(OrdersDTO order) throws SQLException{
+		EntityManager em = DBUtil.getEntityManager();
+		em.getTransaction().begin();
+		boolean result = false;
+		
+		try {
+			em.persist(order.toEntity());
+			em.getTransaction().commit();
+
+			result = true;
+
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+		} finally {
+			em.close();
+		}
+		return result;
+	} 
 }
