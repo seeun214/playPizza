@@ -22,7 +22,7 @@
 			address <input class="w3-input" type="text" name="address" value="${requestScope.customer.address}"> <br>
 			phone <input class="w3-input" type="text" name="phone" value="${requestScope.customer.phone}"> <br>
 			
-			<input class="w3-input" type="submit" value="수정" style="cursor:pointer;">
+			<input class="w3-input w3-red" type="submit" value="수정" style="cursor:pointer;">
 		</form>
 	</c:if>
 </header>
