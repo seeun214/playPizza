@@ -52,6 +52,7 @@ public class Service {
 	public boolean deleteCustomer(String sId) throws NotExistException, SQLException {
 		notExistCustomer(sId);
 		boolean result = customerDAO.deleteCustomer(sId);
+		System.out.println(result);
 		if(!result){
 			throw new NotExistException("고객 정보 삭제 실패");
 		}

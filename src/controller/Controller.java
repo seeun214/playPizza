@@ -103,7 +103,7 @@ public class Controller extends HttpServlet {
 			System.out.println(c);
 			if (c != null) {
 				request.setAttribute("customer", c);
-				url = "customer/customerDetail.jsp";
+				url = "customer/mypage.jsp";
 			} else {
 				request.setAttribute("errorMsg", "존재하지 않는 고객 정보입니다.");
 			}
@@ -132,7 +132,7 @@ public class Controller extends HttpServlet {
 			boolean result = service.updateCustomer(request.getParameter("sId"), request.getParameter("address"), request.getParameter("phone"));
 			if(result) {
 				request.setAttribute("customer", service.getCustomer(request.getParameter("sId")));
-				url = "customer/customerDetail.jsp";
+				url = "customer/mypage.jsp";
 			}else {
 				request.setAttribute("errorMsg", "수정 실패");
 			}
@@ -149,7 +149,6 @@ public class Controller extends HttpServlet {
 		try {
 			boolean result = service.deleteCustomer(request.getParameter("sId"));
 			if(result) {
-//				url = "/index.jsp";
 				url = "customer/logout.jsp";
 			}else {
 				request.setAttribute("errorMsg", "삭제 실패");
