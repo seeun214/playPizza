@@ -72,7 +72,6 @@ public class OrdersDAO {
 			em.remove(em.createNamedQuery("Order.findByOrderId", Orders.class).setParameter("orderId", orderId).getSingleResult());
 
 			em.getTransaction().commit();
-
 			result = true;
 		} catch (Exception e) {
 			em.getTransaction().rollback();

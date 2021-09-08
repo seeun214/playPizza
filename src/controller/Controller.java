@@ -229,9 +229,11 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
+
 			boolean result = service.deleteOrder(Integer.parseInt(request.getParameter("orderId")));
+
 			if (result) {
-//				url = "orders/ordersList";
+				url = "orders/ordersList.jsp";
 			} else {
 				request.setAttribute("errorMsg", "삭제 실패");
 			}
@@ -247,6 +249,7 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
+
 			List<OrdersDTO> orders = service.getAllOrder(Integer.parseInt(request.getParameter("customerId")));
 			request.setAttribute("orders", orders);
 			url = "orders/ordersList.jsp";
@@ -258,7 +261,8 @@ public class Controller extends HttpServlet {
 	}
 
 	// 주문 정보 추가
-	protected void ordersInsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void ordersInsert(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		EntityManager em = DBUtil.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 
@@ -266,7 +270,7 @@ public class Controller extends HttpServlet {
 		Customers customer = null;
 		Menu menu = null;
 		Branches branch = null;
-		
+
 		System.out.println("1");
 		String url = "showError.jsp";
 
@@ -277,11 +281,11 @@ public class Controller extends HttpServlet {
 		String bName = request.getParameter("branch");
 		System.out.println("bName" + bName);
 
-		customer = (Customers) em.createNamedQuery("Customer.findBySId").setParameter("sId", id)
-				.getSingleResult();
+		// ordersDao.convertDTO(id, mname, bname) return newOrderDTO
+		// ordersDAO.addOrders(ordersDao.convertDTO(id, mname, bname)) // order idx
+		customer = (Customers) em.createNamedQuery("Customer.findBySId").setParameter("sId", id).getSingleResult();
 		menu = (Menu) em.createNamedQuery("Menu.findByMenuName").setParameter("name", mName).getSingleResult();
 		branch = (Branches) em.createNamedQuery("Branch.findByName").setParameter("name", bName).getSingleResult();
-		
 
 		newOrder.setCustomerId(customer);
 		newOrder.setMenuId(menu);
@@ -295,12 +299,13 @@ public class Controller extends HttpServlet {
 				url = "orders/order.jsp";
 				request.getParameter("orderInsert");
 				boolean orders = service.addOrders(newOrder);
-				System.out.println("6");
-				
+				System.out.println(6);
+
 				System.out.println("7");
 				if (newOrder != null) {
 					request.setAttribute("orderInsert", newOrder);
 					request.setAttribute("successMsg", "추가 완료");
+					url = "orders/orderInfo.jsp";
 					tx.commit();
 					System.out.println("8");
 				} else {

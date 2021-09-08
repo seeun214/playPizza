@@ -15,10 +15,11 @@
             <li>지점명: <%= request.getParameter("branch") %></li>
         </ul>
         
+        
 
 <br><hr>
 
-	<button onclick="location.href='pizza?command=orderDelete&orderId=${requestScope.orders.orderId}'">주문 취소!</button>
+	<button onclick="location.href='pizza?command=orderDelete">주문 취소!</button>
 	
 	
 
