@@ -34,7 +34,7 @@ public class OrdersDAO {
 		List<OrdersDTO> orders = new ArrayList<OrdersDTO>();
 		
 		try {
-			list = em.createNamedQuery("Order.findByCustomerId", Orders.class).setParameter("customerId", customerId).getResultList();
+			list = em.createNamedQuery("Order.findByCustomerId2", Orders.class).setParameter("customerId", customerId).getResultList();
 			for(Orders o : list) {
 				orders.add(new OrdersDTO(o.getOrderId(), o.getCustomerId(), o.getMenuId(), o.getBranchId()));
 			}
