@@ -118,17 +118,17 @@ public class Service {
 		return ordersDAO.addOrders(order);
 	}
 	
-	public boolean updateCustomer(String sId, String address, String phone) throws NotExistException, SQLException {
-		notExistCustomer(sId);
-		return customerDAO.updateCustomer(sId, address, phone);
-	}
-
-	public boolean deleteCustomer(String sId) throws NotExistException, SQLException {
-		notExistCustomer(sId);
-		boolean result = customerDAO.deleteCustomer(sId);
-		if(!result){
-			throw new NotExistException("고객 정보 삭제 실패");
-		}
-		return result;
-	}
+//	public boolean updateCustomer(String sId, String address, String phone) throws NotExistException, SQLException {
+//		notExistCustomer(sId);
+//		return customerDAO.updateCustomer(sId, address, phone);
+//	}
+//
+//	public boolean deleteCustomer(String sId) throws NotExistException, SQLException {
+//		notExistCustomer(sId);
+//		boolean result = customerDAO.deleteCustomer(sId);
+//		if(!result){
+//			throw new NotExistException("고객 정보 삭제 실패");
+//		}
+//		return result;
+//	}
 }

@@ -40,21 +40,3 @@
 <jsp:include page="common/footer.jsp"></jsp:include>
 </body>
 </html>
-
-<!-- 	<form action="pizza?command=customer" method="post">
-		고객 ID : <input type="text" name="sId"><input type="submit" value="검색">
-	</form>
-		
-	<form action="pizza?command=branch" method="post" >
-		&nbsp;&nbsp;&nbsp;
-		2. 지점명 : <input type="text" name="name"><input type="submit" value="검색">
-	</form>
-	
-	<br>
-	<form action="pizza?command=menu" method="post" >
-		메뉴 이름 : <input type="text" name="name"><input type="submit" value="검색">
-	</form>
-	
-</body>
-</html>
-
