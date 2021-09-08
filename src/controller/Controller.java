@@ -47,6 +47,8 @@ public class Controller extends HttpServlet {
 				customerUpdate(request, response);
 			}else if(command.equals("customerDelete")){
 				customerDelete(request, response);
+			}else if(command.equals("orderDelete")){
+				orderDelete(request, response);
 			}
 		} catch (Exception s) {
 			request.setAttribute("errorMsg", s.getMessage());
@@ -227,5 +229,12 @@ public class Controller extends HttpServlet {
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
+	
+	public void orderDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "showError.jsp";
+	
+		request.getRequestDispatcher(url).forward(request, response);
+	}
+
 
 }

@@ -35,12 +35,6 @@
 		메뉴 이름 : <input type="text" name="name"><input type="submit" value="검색">
 	</form>
 	
-	<br><br><br>
-	
-	<form action="pizza?command=ordersAll" method="post" >
-		고객 번호 : <input type="text" name="customerId"><input type="submit" value="검색">
-	</form>
-	
 	
 </body>
 </html>
