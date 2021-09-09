@@ -21,16 +21,16 @@
 	
 	
 
-<table border="1" class="w3-table">
+<table border="1" class="w3-table w3-centered" style="border: 1px solid white;">
 	<thead>
-		<tr>
+		<tr class="w3-red" >
 			<th>주문 번호</th><th>메뉴</th><th>가격</th><th>지점</th><th>전화번호</th>
 		</tr>
 	</thead>
 	
 	<c:forEach items="${requestScope.orders}" var="data">
-		 <tr>
-		 	<td>${data.orderId}</td>
+		 <tr style="border: 1px solid white;">
+		 	<td style="border: none;">${data.orderId}</td>
  			<td>${data.menuId.name}</td>
  			<td>${data.menuId.price}</td>
  			<td>${data.branchId.name}</td>
