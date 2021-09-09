@@ -36,7 +36,7 @@ div {
 	
 	<button onclick="location.href='pizza?command=orderDelete&orderId=${requestScope.orderInsert.orderId}'"
 			class="w3-button w3-black w3-padding-medium w3-large w3-margin-top">
-			Cancel
+			Cancel!
 	</button>
 		
 	<br><br><br>
