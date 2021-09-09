@@ -34,7 +34,7 @@ img:hover {
 	<br>
 	<h5>메뉴 검색</h5>
 	<form action="pizza?command=menu" method="post">
-		<input class="w3-input" type="text" id="name" name="name" placeholder="메뉴명을 입력해주세요." style="width: 75%; display: inline; margin: 20px 0">
+		<input class="w3-input" type="text" id="name" name="name" placeholder="메뉴명을 입력해주세요." required style="width: 75%; display: inline; margin: 20px 0">
 		<input class="w3-input w3-red" type="submit" value="검색" style="width: 20%; display: inline;">
 	</form>
 	<br>
