@@ -37,6 +37,7 @@ img:hover {
 		<input class="w3-input" type="text" id="name" name="name" placeholder="메뉴명을 입력해주세요." required style="width: 75%; display: inline; margin: 20px 0">
 		<input class="w3-input w3-red" type="submit" value="검색" style="width: 20%; display: inline;">
 	</form>
+
 	<br>
 	<h5>메뉴별 정보</h5>
 	
