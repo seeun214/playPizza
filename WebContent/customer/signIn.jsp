@@ -20,16 +20,16 @@
 			<input type="hidden" name="command" value="customerInsert"> 
 			
 			<label for="sId">ID</label>
-			<input class="w3-input" type="text" id="sId" name="sId" style="margin-bottom:20px;">
+			<input class="w3-input" type="text" id="sId" name="sId" required style="margin-bottom:20px;">
 			
 			<label for="password">Password</label>
-			<input class="w3-input" type="password" id="password" name="password" style="margin-bottom:20px;">
+			<input class="w3-input" type="password" id="password" name="password" required style="margin-bottom:20px;">
 				
 			<label for="address">주소</label>
-			<input class="w3-input" type="text" id="address" name="address" style="margin-bottom:20px;">
+			<input class="w3-input" type="text" id="address" name="address" required style="margin-bottom:20px;">
 				
 			<label for="phone">전화번호</label>
-			<input class="w3-input" type="text" id="phone" name="phone" style="margin-bottom:20px;">
+			<input class="w3-input" type="text" id="phone" name="phone" required style="margin-bottom:20px;">
 				
 			<input class="w3-input w3-red" type="submit" value="가입" style="cursor:pointer;">
 		</form>
