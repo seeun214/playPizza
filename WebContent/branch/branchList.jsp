@@ -23,7 +23,7 @@
 	<h5>지점 검색</h5>
 	<form action="pizza?command=branch" method="post">
 		<input class="w3-input" type="text" id="name" name="name"
-			placeholder="지점명을 입력해주세요."
+			placeholder="지점명을 입력해주세요." required
 			style="width: 75%; display: inline; margin: 20px 0"> <input
 			class="w3-input w3-red" type="submit" value="검색"
 			style="width: 20%; display: inline;">
