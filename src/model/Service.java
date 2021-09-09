@@ -43,9 +43,9 @@ public class Service {
 		return customerDAO.addCustomer(customer);
 	}
 
-	public boolean updateCustomer(String sId, String address, String phone) throws NotExistException, SQLException {
+	public boolean updateCustomer(String sId, String password, String address, String phone) throws NotExistException, SQLException {
 		notExistCustomer(sId);
-		return customerDAO.updateCustomer(sId, address, phone);
+		return customerDAO.updateCustomer(sId, password, address, phone);
 	}
 
 	public boolean deleteCustomer(String sId) throws NotExistException, SQLException {
@@ -104,8 +104,8 @@ public class Service {
 	}
 
 	// 주문 정보 추가 메소드 반환
-	public static boolean addOrders(OrdersDTO order) throws SQLException {
-		return ordersDAO.addOrders(order);
+	public static boolean addOrders(String sId, String mName, String bName) throws SQLException {
+		return ordersDAO.addOrders(sId, mName, bName);
 	}
 
 	// 고객 번호로 주문 내역 검색
@@ -126,4 +126,11 @@ public class Service {
 		return result;
 	}
 
+	public OrdersDTO findLastOrder() throws NotExistException {
+		OrdersDTO order = ordersDAO.findLastOrder();
+		if (order == null) {
+			throw new NotExistException("주문이 없습니다.");
+		}
+		return order;
+	}
 }

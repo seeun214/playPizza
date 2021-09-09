@@ -17,6 +17,7 @@ public class MenuDTO {
 	private int menuId;
 	private String name;
 	private int price;
+	private String imgname;
 	
 	@Override
 	public String toString() {
@@ -24,7 +25,7 @@ public class MenuDTO {
 	}
 	
 	public Menu toEntity() {
-		return Menu.builder().menuId(menuId).name(name).price(price).build();
+		return Menu.builder().menuId(menuId).name(name).price(price).imgname(imgname).build();
 	}
 
 }

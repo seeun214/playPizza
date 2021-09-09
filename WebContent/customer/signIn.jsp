@@ -11,7 +11,7 @@
 <body>
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
 
-	<header class="w3-container" style="padding: 128px 16px; margin: 0 400px">
+	<header class="w3-container" style="padding: 128px 16px; margin: 0 20%">
 		<h1>Sign In</h1>
 		<h5>정확한 정보를 적어주세요 :)</h5>
 		<br>
@@ -21,6 +21,9 @@
 			
 			<label for="sId">ID</label>
 			<input class="w3-input" type="text" id="sId" name="sId" style="margin-bottom:20px;">
+			
+			<label for="password">Password</label>
+			<input class="w3-input" type="password" id="password" name="password" style="margin-bottom:20px;">
 				
 			<label for="address">주소</label>
 			<input class="w3-input" type="text" id="address" name="address" style="margin-bottom:20px;">

@@ -37,6 +37,7 @@ public class Menu {
 	private int menuId;
 	private String name;
 	private int price;
+	private String imgname;
 	
 	@OneToMany(mappedBy = "menuId")
 	private List<Orders> pizzaOrders;
