@@ -22,7 +22,7 @@ img{
   <h1 class="w3-margin w3-jumbo">Play Pizza</h1>
   <p class="w3-xlarge">근데 이제 배달은 안되는</p>
 
-  <c:if test="${not empty sessionScope.id}">
+<c:if test="${not empty sessionScope.id}">
   <img src="images/orderIcon.png" onclick="location.href='orders/order.jsp'" style="cursor: pointer;" width="300" height="300"/>
 </c:if>
 
