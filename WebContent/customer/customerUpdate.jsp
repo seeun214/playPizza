@@ -19,9 +19,9 @@
 	<c:if test="${not empty sessionScope.id}">
 		<form action="pizza?command=customerUpdate" method="post">
 			ID <input class="w3-input" type="text" name="sId" value="${sessionScope.id}" readonly > <br>
-			Password <input class="w3-input" type="password" name="password" value="${requestScope.customer.password}"> <br>
-			address <input class="w3-input" type="text" name="address" value="${requestScope.customer.address}"> <br>
-			phone <input class="w3-input" type="text" name="phone" value="${requestScope.customer.phone}"> <br>
+			Password <input class="w3-input" type="password" name="password" required value="${requestScope.customer.password}"> <br>
+			address <input class="w3-input" type="text" name="address" required value="${requestScope.customer.address}"> <br>
+			phone <input class="w3-input" type="text" name="phone" required value="${requestScope.customer.phone}"> <br>
 			
 			<input class="w3-input w3-red" type="submit" value="수정" style="cursor:pointer;">
 		</form>
