@@ -21,6 +21,7 @@ img{
 <header class="w3-container w3-red w3-center" style="padding:30px 16px">
   <h1 class="w3-margin w3-jumbo">Play Pizza</h1>
   <p class="w3-xlarge">근데 이제 배달은 안되는</p>
+
   <img src="images/orderIcon.png" onclick="location.href='orders/order.jsp'" style="cursor: pointer;" width="300" height="300"/>
 
 
@@ -28,7 +29,6 @@ img{
 
 	<img src="images/playpizza.jpg" class="w3-round" alt="Pizza" style="width: 100%;">
 	<img src="images/pizzasale.jpg" class="w3-round" alt="Pizza" style="width: 100%;">
-
 
 <jsp:include page="common/footer.jsp"></jsp:include>
 </body>

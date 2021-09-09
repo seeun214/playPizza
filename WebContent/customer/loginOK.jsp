@@ -9,11 +9,15 @@
 	
 	CustomersDTO customer = CustomersDAO.getInstance().getCustomer(id);
 	
-	if (id != null) {
+	if (customer == null) {
+		response.sendRedirect("loginRetry.jsp");
+	} else {
 		if(pwd.equals(customer.getPassword())) {
 			session.setAttribute("id", id);
+			response.sendRedirect("../index.jsp");
+		} else {
+			response.sendRedirect("loginRetry.jsp");
 		}
 	}
 	
-	response.sendRedirect("../index.jsp");
 %>

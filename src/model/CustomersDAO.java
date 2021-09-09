@@ -30,7 +30,7 @@ public class CustomersDAO {
 			em.close();
 			em = null;
 		}
-		System.out.println(customer.getSId());
+//		System.out.println(customer.getSId());
 		return customer;
 	}
 
