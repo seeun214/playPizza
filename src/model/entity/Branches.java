@@ -26,7 +26,7 @@ import lombok.Setter;
 				initialValue = 1,
 				allocationSize = 1)
 @NamedQuery(name="Branch.findByName",
-			query="select b from Branches b where b.name = :name")
+			query="select b from Branches b where b.name LIKE :name")
 public class Branches {
 	@Id
 	@Column(name="branch_id")
