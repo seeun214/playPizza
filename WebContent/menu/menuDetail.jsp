@@ -14,7 +14,7 @@
 <body>
 ${requestScope.successMsg}
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<header class="w3-container" style="padding:128px 16px; margin: 0 400px">
+<header class="w3-container" style="padding:128px 16px; margin: 0 20%">
 <h1>${requestScope.menu.name}</h1>
 <h5>${requestScope.menu.price}원</h5>
 <img src="images/${requestScope.menu.imgname}" class="w3-round" alt="Pizza" style="width: 100%;">

@@ -10,7 +10,7 @@
 	CustomersDTO customer = CustomersDAO.getInstance().getCustomer(id);
 	
 	if (id != null) {
-		if(pwd.equals(CustomersDAO.getInstance().getCustomer(id).getPassword())) {
+		if(pwd.equals(customer.getPassword())) {
 			session.setAttribute("id", id);
 		}
 	}
