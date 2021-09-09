@@ -12,14 +12,14 @@
 
 <jsp:include page="../common/navbar.jsp"></jsp:include>
 
-<header class="w3-container" style="padding:128px 16px; margin: 0 400px">
+<header class="w3-container" style="padding:128px 16px; margin: 0 20%">
 <h1>회원 정보 수정</h1>
 <h3>${requestScope.customer.SId}님의 정보를  변경하실 수 있습니다. (ID 제외)</h3> <br>
 
 	<c:if test="${not empty sessionScope.id}">
 		<form action="pizza?command=customerUpdate" method="post">
 			ID <input class="w3-input" type="text" name="sId" value="${sessionScope.id}" readonly > <br>
-			Password <input class="w3-input" type="text" name="password" value="${requestScope.customer.password}"> <br>
+			Password <input class="w3-input" type="password" name="password" value="${requestScope.customer.password}"> <br>
 			address <input class="w3-input" type="text" name="address" value="${requestScope.customer.address}"> <br>
 			phone <input class="w3-input" type="text" name="phone" value="${requestScope.customer.phone}"> <br>
 			
