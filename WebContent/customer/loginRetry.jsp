@@ -14,14 +14,14 @@
 	<header class="w3-container" style="padding: 128px 16px; margin: 0 20%">
 		<form action="loginOK.jsp" method="post">
 			<h1>Login</h1>
-			<h3>ID와 Password를 입력해주세요.</h3>
+			<h3>ID와 Password 확인 뒤 다시 입력해주세요.</h3>
 			<br>
 			
 			<label for="id">ID</label>
-			<input class="w3-input" type="text" id="id" name="id" required style="margin-bottom:20px;">
+			<input class="w3-input" type="text" id="id" name="id" style="margin-bottom:20px;">
 			
 			<label for="pwd">Password</label>
-			<input class="w3-input" type="password" id="pwd" name="pwd" required>
+			<input class="w3-input" type="password" id="pwd" name="pwd">
 
 			<input class="w3-input w3-red" type="submit" value="로그인" style="cursor:pointer; margin-top:20px;">
 		</form>
