@@ -30,7 +30,7 @@ allocationSize = 1)
 
 @NamedQuery(query = "select o from Orders o where o.orderId=:orderId order by o.orderId", name = "Order.findByOrderId")
 @NamedQuery(query = "select o from Orders o where o.customerId.sId=:customerId order by o.customerId", name = "Order.findByCustomerId")
-@NamedQuery(query = "select o from Orders o where o.customerId.customerId=:customerId", name = "Order.findByCustomerId2")
+@NamedQuery(query = "select o from Orders o where o.customerId.customerId=:customerId order by o.orderId", name = "Order.findByCustomerId2")
 @NamedQuery(query = "select o from Orders o where o.menuId=:menuId order by o.menuId", name = "Order.findByMenuId")
 @NamedQuery(query = "select o from Orders o where o.branchId=:branchId order by o.branchId", name = "Order.findByBranchId")
 public class Orders {
