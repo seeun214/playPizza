@@ -9,10 +9,13 @@
 </head>
 <style>
 body {
+  background-image: url("../images/1.jpg");
   background-size: 1500px;
-  font-size: 200%;
 }
-
+form {
+	font-size: 200%;
+	font-family: Fantasy;
+}
 </style>
 <body>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
@@ -20,10 +23,9 @@ body {
 
 <header class="w3-container" style="padding:128px 16px; margin: 0 20px">
 	<br><br>
-	
 	<form action="../pizza">
 	<input type="hidden" name="command" value="ordersInsert">
-  <label for="menu" style="color:black;">메뉴를 선택하세요:</label>
+  <label for="menu" style="color:black;" style="font-family:Fantasy;" style="font-size: 200%;">Choose PIZZA:</label>
   <input list="menuList" name="menu" id="menu" />
   <datalist id="menuList">
     <option value="페퍼로니 피자" ></option>
@@ -37,7 +39,7 @@ body {
     <option value="맥주"></option>
     </datalist>
     <br><br>
-  <label for="branch" style="color:black;">지점을 선택하세요:</label>
+  <label for="branch" style="color:black;" style="font-family:Fantasy;">Choose BRANCH:</label>
   <input list="branchList" name="branch" id="branch" />
   <datalist id="branchList">
     <option value="남산점" ></option>
@@ -45,15 +47,10 @@ body {
     <option value="상봉점" ></option>
   </datalist>
   <br><br>
-  <input type="submit" value="주문 !">
+  <input type="submit" value="Order !">
 </form>
-  
-  
-	<br>
-	<hr>
-	<a href="${pageContext.request.contextPath}">메인으로 돌아가기</a>
-	<br>
 </header>
-<jsp:include page="../common/footer.jsp"></jsp:include>
 </body>
+
+<jsp:include page="../common/footer.jsp"></jsp:include>
 </html>
