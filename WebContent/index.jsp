@@ -8,6 +8,11 @@
 <title>Welcome playPizza</title>
 <jsp:include page="common/styleLink.jsp"></jsp:include>
 </head>
+<style>
+img{
+	image-size: 200px;
+}
+</style>
 <body>
 
 <jsp:include page="common/navbar.jsp"></jsp:include>
@@ -16,11 +21,19 @@
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
   <h1 class="w3-margin w3-jumbo">Play Pizza</h1>
   <p class="w3-xlarge">근데 이제 배달은 안되는</p>
-  <img src="images/orderIcon.png" onclick="location.href='orders/order.jsp'" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">주문하기</button>
+  <c:if test="${not empty sessionScope.sId}">
+  <img src="images/orderIcon.png" onclick="location.href='orders/order.jsp'" style="cursor: pointer;" width="300" height="300"/>
+</c:if>
+
+<c:if test="${ empty sessionScope.sId}">
+  <img src="images/orderIcon.png" onclick="location.href='customer/login.jsp'" style="cursor: pointer;" width="300" height="300"/>
+
+</c:if>
+
 </header>
 
 <!-- First Grid -->
-<div class="w3-row-padding w3-padding-64 w3-container">
+<div class="w3-row-padding w3-padding-64 w3-container" style="background-image: url('images/피자이벤트.jpg'); style="background-size">
   <div class="w3-content">
     <div class="w3-twothird">
       <h1>Today's Event</h1>
