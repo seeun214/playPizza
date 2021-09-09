@@ -11,7 +11,7 @@
 <body>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
 
-<header class="w3-container" style="padding:128px 16px; margin: 0 400px">
+<header class="w3-container" style="padding:128px 16px; margin: 0 20%">
 <h1>마이페이지</h1>
 <h3>${requestScope.customer.SId}님 안녕하세요!</h3>
 <p>현재 주소: ${requestScope.customer.address}&nbsp;&nbsp;/&nbsp;&nbsp;연락 가능 번호: ${requestScope.customer.phone}</p>
