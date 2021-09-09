@@ -32,13 +32,6 @@ img:hover {
 	<h1>Menu</h1>
 
 	<br>
-	<h5>메뉴 검색</h5>
-	<form action="pizza?command=menu" method="post">
-		<input class="w3-input" type="text" id="name" name="name" placeholder="메뉴명을 입력해주세요." style="width: 75%; display: inline; margin: 20px 0">
-		<input class="w3-input w3-red" type="submit" value="검색" style="width: 20%; display: inline;">
-	</form>
-
-	<br>
 	<h5>메뉴별 정보</h5>
 	
 	<!-- Photo grid -->
@@ -46,19 +39,15 @@ img:hover {
 		<div class="w3-third">
 			<img src="images/pepperoni.jpg" onclick="location.href='${url}pizza?command=menu&name=페퍼로니 피자'" alt="페퍼로니 피자">
 			<img src="images/chicago.jpg" onclick="location.href='${url}pizza?command=menu&name=시카고 피자'" alt="시카고 피자">
-			<img src="images/cola.jpg" onclick="location.href='${url}pizza?command=menu&name=콜라'" alt="콜라">
 		</div>
 
 		<div class="w3-third">
 			<img src="images/cheese.jpg" onclick="location.href='${url}pizza?command=menu&name=치즈 피자'" alt="치즈 피자">
 			<img src="images/berry.jpg" onclick="location.href='${url}pizza?command=menu&name=베리 피자'" alt="베리 피자">
-			<img src="images/cider.jpg" onclick="location.href='${url}pizza?command=menu&name=사이다'" alt="사이다">
 		</div>
     
 		<div class="w3-third">
 			<img src="images/vege.jpg" onclick="location.href='${url}pizza?command=menu&name=야채 피자'" alt="야채 피자">
-			<img src="images/pasta.jpg" onclick="location.href='${url}pizza?command=menu&name=토마토 파스타'" alt="토마토 파스타">
-			<img src="images/beer.jpg" onclick="location.href='${url}pizza?command=menu&name=맥주'" alt="맥주">
 		</div>
 	</div>
 	
