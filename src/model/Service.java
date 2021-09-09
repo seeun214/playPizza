@@ -104,8 +104,8 @@ public class Service {
 	}
 
 	// 주문 정보 추가 메소드 반환
-	public static boolean addOrders(OrdersDTO order) throws SQLException {
-		return ordersDAO.addOrders(order);
+	public static boolean addOrders(String sId, String mName, String bName) throws SQLException {
+		return ordersDAO.addOrders(sId, mName, bName);
 	}
 
 	// 고객 번호로 주문 내역 검색

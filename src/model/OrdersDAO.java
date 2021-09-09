@@ -7,7 +7,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import model.dto.OrdersDTO;
+import model.entity.Branches;
 import model.entity.Customers;
+import model.entity.Menu;
 import model.entity.Orders;
 import model.util.DBUtil;
 
@@ -45,14 +47,27 @@ public class OrdersDAO {
 		return orders;
 	}
 
-	public boolean addOrders(OrdersDTO order) throws SQLException {
+	public boolean addOrders(String sId, String mName, String bName) throws SQLException {
 		EntityManager em = DBUtil.getEntityManager();
 		em.getTransaction().begin();
 		boolean result = false;
+		
+		OrdersDTO newOrder = new OrdersDTO();
+		Customers customer = null;
+		Menu menu = null;
+		Branches branch = null;
 
 		try {
+			customer = (Customers) em.createNamedQuery("Customer.findBySId").setParameter("sId", sId)
+					.getSingleResult();
+			menu = (Menu) em.createNamedQuery("Menu.findByMenuName").setParameter("name", mName).getSingleResult();
+			branch = (Branches) em.createNamedQuery("Branch.findByName").setParameter("name", bName).getSingleResult();
 			
-			em.persist(order.toEntity());
+			newOrder.setCustomerId(customer);
+			newOrder.setMenuId(menu);
+			newOrder.setBranchId(branch);
+			
+			em.persist(newOrder.toEntity());
 			em.getTransaction().commit();
 			result = true;
 		} catch (Exception e) {

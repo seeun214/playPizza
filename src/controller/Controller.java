@@ -259,47 +259,27 @@ public class Controller extends HttpServlet {
 
 	// 주문 정보 추가
 	protected void ordersInsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		EntityManager em = DBUtil.getEntityManager();
-		EntityTransaction tx = em.getTransaction();
-
-		OrdersDTO newOrder = new OrdersDTO();
-		Customers customer = null;
-		Menu menu = null;
-		Branches branch = null;
 		
-		System.out.println("1");
 		String url = "showError.jsp";
 
-		String id = (String) request.getSession().getAttribute("id");
-		System.out.println("id" + id);
+		String sId = (String) request.getSession().getAttribute("id");
+		System.out.println("id" + sId);
 		String mName = request.getParameter("menu");
 		System.out.println("mName" + mName);
 		String bName = request.getParameter("branch");
 		System.out.println("bName" + bName);
 
-		customer = (Customers) em.createNamedQuery("Customer.findBySId").setParameter("sId", id)
-				.getSingleResult();
-		menu = (Menu) em.createNamedQuery("Menu.findByMenuName").setParameter("name", mName).getSingleResult();
-		branch = (Branches) em.createNamedQuery("Branch.findByName").setParameter("name", bName).getSingleResult();
-		
-
-		newOrder.setCustomerId(customer);
-		newOrder.setMenuId(menu);
-		newOrder.setBranchId(branch);
-
 		// 해킹등으로 불합리하게 요청도 될수 있다는 가정하에 모든 데이터가 제대로 전송이 되었는지를 검증하는 로직
-		if (id != null && id.length() != 0 && mName != null && bName != null) {
+		if (sId != null && sId.length() != 0 && mName != null && bName != null) {
 
 			try {
-				tx.begin();
-				url = "orders/order.jsp";
 				request.getParameter("orderInsert");
-				boolean orders = service.addOrders(newOrder);
+				boolean result = service.addOrders(sId, mName, bName);
 				
-				if (newOrder != null) {
-					request.setAttribute("orderInsert", newOrder);
+				if (result) {
+					request.setAttribute("orderInsert", sId);
 					request.setAttribute("successMsg", "추가 완료");
-					tx.commit();
+					url = "orders/orderInfo.jsp";
 				} else {
 					request.setAttribute("errorMsg", "다시 시도하세요");
 				}
