@@ -281,6 +281,7 @@ public class Controller extends HttpServlet {
 				
 				if (result) {
 					request.setAttribute("orderInsert", sId);
+					url = "orders/orderInfo.jsp";
 				} else {
 					request.setAttribute("errorMsg", "다시 시도하세요");
 				}
