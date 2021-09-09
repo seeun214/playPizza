@@ -6,21 +6,19 @@
 <meta charset="utf-8">
 <title>주문 내역</title>
 </head>
-<body>
-
+<body>  
 <h3><%= session.getAttribute("id") %>님의 주문이 완료되었습니다~ &#128523;</h3>
         <ul>
             <li>주문자: <%= session.getAttribute("id") %></li>
             <li>메뉴: <%= request.getParameter("menu") %></li>
             <li>지점명: <%= request.getParameter("branch") %></li>
+	       
         </ul>
-        
         
 
 <br><hr>
 
-	<button onclick="location.href='pizza?command=orderDelete">주문 취소!</button>
-	
+<button onclick="location.href='pizza?command=orderDelete&orderId=${requestScope.orderInsert.orderId}'">주문 취소!</button>
 	
 
 </body>
