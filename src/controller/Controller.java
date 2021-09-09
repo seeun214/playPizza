@@ -280,6 +280,7 @@ public class Controller extends HttpServlet {
 					request.setAttribute("orderInsert", sId);
 					request.setAttribute("successMsg", "추가 완료");
 					url = "orders/orderInfo.jsp";
+				
 				} else {
 					request.setAttribute("errorMsg", "다시 시도하세요");
 				}
