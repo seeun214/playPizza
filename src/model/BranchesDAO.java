@@ -29,7 +29,7 @@ public class BranchesDAO {
 		BranchesDTO branch = null;
 
 		try {
-			Branches b = em.createNamedQuery("Branch.findByName", Branches.class).setParameter("name", name).getSingleResult();
+			Branches b = em.createNamedQuery("Branch.findByName", Branches.class).setParameter("name", "%" + name + "%").getSingleResult();
 //			Branches b = em.find(Branches.class, name);
 			branch = new BranchesDTO(b.getBranchId(), b.getName(), b.getAddress(), b.getPhone());
 		} catch (Exception e) {
