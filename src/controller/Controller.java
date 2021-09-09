@@ -229,9 +229,11 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
+
 			boolean result = service.deleteOrder(Integer.parseInt(request.getParameter("orderId")));
+
 			if (result) {
-//				url = "orders/ordersList";
+				url = "orders/ordersList.jsp";
 			} else {
 				request.setAttribute("errorMsg", "삭제 실패");
 			}
@@ -247,6 +249,7 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		String url = "showError.jsp";
 		try {
+
 			List<OrdersDTO> orders = service.getAllOrder(Integer.parseInt(request.getParameter("customerId")));
 			request.setAttribute("orders", orders);
 			url = "orders/ordersList.jsp";
@@ -259,7 +262,7 @@ public class Controller extends HttpServlet {
 
 	// 주문 정보 추가
 	protected void ordersInsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String url = "showError.jsp";
 
 		String sId = (String) request.getSession().getAttribute("id");
@@ -278,9 +281,6 @@ public class Controller extends HttpServlet {
 				
 				if (result) {
 					request.setAttribute("orderInsert", sId);
-					request.setAttribute("successMsg", "추가 완료");
-					url = "orders/orderInfo.jsp";
-				
 				} else {
 					request.setAttribute("errorMsg", "다시 시도하세요");
 				}
