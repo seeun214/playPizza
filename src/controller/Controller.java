@@ -233,7 +233,7 @@ public class Controller extends HttpServlet {
 			boolean result = service.deleteOrder(Integer.parseInt(request.getParameter("orderId")));
 
 			if (result) {
-				url = "orders/ordersList.jsp";
+				url = "/index.jsp";
 			} else {
 				request.setAttribute("errorMsg", "삭제 실패");
 			}
@@ -264,7 +264,7 @@ public class Controller extends HttpServlet {
 	protected void ordersInsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String url = "showError.jsp";
-
+		
 		String sId = (String) request.getSession().getAttribute("id");
 		System.out.println("id" + sId);
 		String mName = request.getParameter("menu");
@@ -274,13 +274,13 @@ public class Controller extends HttpServlet {
 
 		// 해킹등으로 불합리하게 요청도 될수 있다는 가정하에 모든 데이터가 제대로 전송이 되었는지를 검증하는 로직
 		if (sId != null && sId.length() != 0 && mName != null && bName != null) {
-
 			try {
 				request.getParameter("orderInsert");
 				boolean result = service.addOrders(sId, mName, bName);
 				
+				OrdersDTO order = service.findLastOrder();
 				if (result) {
-					request.setAttribute("orderInsert", sId);
+					request.setAttribute("orderInsert", order);
 					url = "orders/orderInfo.jsp";
 				} else {
 					request.setAttribute("errorMsg", "다시 시도하세요");

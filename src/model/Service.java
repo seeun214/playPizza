@@ -126,4 +126,11 @@ public class Service {
 		return result;
 	}
 
+	public OrdersDTO findLastOrder() throws NotExistException {
+		OrdersDTO order = ordersDAO.findLastOrder();
+		if (order == null) {
+			throw new NotExistException("주문이 없습니다.");
+		}
+		return order;
+	}
 }

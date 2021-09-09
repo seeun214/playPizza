@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import model.dto.OrdersDTO;
 import model.entity.Branches;
@@ -69,6 +70,7 @@ public class OrdersDAO {
 			
 			em.persist(newOrder.toEntity());
 			em.getTransaction().commit();
+			
 			result = true;
 		} catch (Exception e) {
 			em.getTransaction().rollback();
@@ -95,6 +97,23 @@ public class OrdersDAO {
 			em = null;
 		}
 		return result;
+	}
+
+	public OrdersDTO findLastOrder() {
+		EntityManager em = DBUtil.getEntityManager();
+		em.getTransaction().begin();
+		OrdersDTO order = null;
+
+		try {
+			Orders o = (Orders) em.createNativeQuery("SELECT * FROM ORDERS WHERE ORDER_ID = (SELECT MAX(ORDER_ID) FROM ORDERS)", Orders.class).getSingleResult();
+			order = new OrdersDTO(o.getOrderId(), o.getCustomerId(), o.getMenuId(), o.getBranchId());
+			System.out.println(order.getOrderId());
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+		} finally {
+			em.close();
+		}
+		return order;
 	}
 
 }
