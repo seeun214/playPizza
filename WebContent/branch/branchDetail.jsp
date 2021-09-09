@@ -14,7 +14,7 @@
 <body>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
 
-<header class="w3-container" style="padding:128px 16px; margin: 0 400px">
+<header class="w3-container" style="padding:128px 16px; margin: 0 20%">
 <h1>지점</h1>
 
 <hr><p> 
