@@ -15,17 +15,11 @@
 
 # ⏳ 프로젝트 기간
 
-[주제 선정](https://www.notion.so/69f85542ed854d1591d5fb989a7b1216)
-
-[DB모델링 & 화면 구성 목업](https://www.notion.so/DB-5adc8a8abfb440dbae886e5f5089e80e)
-
-[MVC 패턴 설계 및 코딩](https://www.notion.so/MVC-800a669bd52e45f8b764c27f34e50522)
-
-[웹 페이지 구현](https://www.notion.so/6b60201e13af44db9d19dcbc20799aa4)
+### 2021.09.06(월) ~ 2021.09.09(목)
 
 # 💡깃허브 프로젝트 기능 이용
 
-![깃 프로젝트.PNG](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e5f19183-f89d-4c18-a0c9-21d6e0e975a0/깃_프로젝트.png)
+![깃 프로젝트 PNG](https://user-images.githubusercontent.com/29134944/132782987-6e1774fb-7441-4742-a24a-47dc99384129.png)
 
 # 💻 개발 환경
 
@@ -37,7 +31,7 @@
 
 ## 1️⃣ 데이터베이스 설계
 
-![playPizza.png](https://www.notion.so/do-oni/Order-your-Pizza-7b5b049854c04659b242c130f0bfdf2d#5b210f4b7e16448297a056ceb0f6cb93)
+![playPizza](https://user-images.githubusercontent.com/29134944/132783010-002ce5fc-7f80-4fd6-a37e-d32281903db8.png)
 
 ## 2️⃣ 오븐 이용하여 목업
 
